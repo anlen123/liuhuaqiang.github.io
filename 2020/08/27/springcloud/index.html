@@ -449,7 +449,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="第一个SpringCloud"><a href="#第一个SpringCloud" class="headerlink" title="第一个SpringCloud"></a>第一个SpringCloud</h2><ol>
+                <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>●单一职责原则<br>●每个服务足够内聚,足够小,代码容易理解，这样能聚焦一个指定的业务功能或业务需求;<br>●开发简单,开发效率提高，-个服务可能就是专- -的只干- -件事; .<br>●微服务能够被小团队单独开发,这个小团队是2~5人的开发人员组成;<br>●微服务是松耦合的，是有功能意义的服务,无论是在开发阶段或部署阶段都是独立的。<br>●微服务能使用不同的语言开发。<br>●易于和第三方集成，微服务允许容易且灵活的方式集成自动部署,通过持续集成工具,如jenkins, Hudson,<br>bamboo<br>●微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果。无需通过合作才能体<br>现价值。<br>●微服务允许你利用融合最新技术。<br>●<strong>微服务只是业务逻辑的代码，不会和HTML，CSS或其他界面混合</strong><br>●每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统-数据库</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h2><p>●开发人员要处理分布式系统的复杂性<br>●多服务运维难度,随着服务的增加，运维的压力也在增大<br>●系统部署依赖<br>●服务间通信成本<br>数据一致性<br>●系统集成测试<br>●性能监控…</p>
+<p><img src="/2020/08/27/springcloud/image-20201013124827314.png" alt="image-20201013124827314"></p>
+<p><img src="/2020/08/27/springcloud/image-20201013141509658.png" alt="image-20201013141509658"></p>
+<p>●https:/springcloud.cc/spring-cloud-netflix.html<br>●中文API文档: <a href="https://springcloud.cc/spring-cloud-dalston.html" target="_blank" rel="noopener">https://springcloud.cc/spring-cloud-dalston.html</a><br>●SpringCloud中国社区 <a href="http://springcloud.cn/" target="_blank" rel="noopener">http://springcloud.cn/</a><br>●SpringCloud中文网<a href="https://springcloud.cc" target="_blank" rel="noopener">https://springcloud.cc</a></p>
+<h2 id="第一个SpringCloud"><a href="#第一个SpringCloud" class="headerlink" title="第一个SpringCloud"></a>第一个SpringCloud</h2><ol>
 <li><p>==导入依赖==</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
@@ -595,7 +600,7 @@
 
 <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span>  dept<span class="token punctuation">;</span></code></pre>
 </li>
-<li><p>新建实体类</p>
+<li><p>新建实体类 (新建一个module创建实体类)</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>lhq<span class="token punctuation">.</span>springcloud<span class="token punctuation">.</span>pojo<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
@@ -1024,6 +1029,12 @@ eureka:
 </ol>
 <p>   当7001中的掉了后,才向7002发送注册,以此类推</p>
 <pre><code>
+![image-20201014144325399](springcloud/image-20201014144325399.png)
+
+![image-20201014143920398](springcloud/image-20201014143920398.png)
+
+![image-20201014144215396](springcloud/image-20201014144215396.png)
+
 ## 负载均衡
 
 ### Ribbon 实现负载均衡
@@ -1271,7 +1282,7 @@ springcloud Ribbon 是基于Netflix Ribbon实现的一套==客户端==负载均�
                .setDb_source(&quot;no this databases&quot;);
    }</code></pre><p>   }</p>
 <pre><code>
-   ![image-20200826151844077](SpringCloud/image-20200826151844077.png)
+![image-20200826151844077](SpringCloud/image-20200826151844077.png)
 
 3. 在主启动类上加注解@EnableCircuitBreaker //添加对熔断的支持
 
@@ -1409,6 +1420,8 @@ springcloud Ribbon 是基于Netflix Ribbon实现的一套==客户端==负载均�
        return registrationBean;
    }</code></pre><p>   }</p>
 <pre><code>
+   ![image-20201014193817270](springcloud/image-20201014193817270.png)
+
    ![image-20200826184053804](SpringCloud/image-20200826184053804.png)
 
    监控页面: 8001/actuator/hystrix.stream

@@ -1861,7 +1861,8 @@ session<span class="token punctuation">.</span><span class="token function">setA
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hell,你被执行了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<h1 id="分布式理论"><a href="#分布式理论" class="headerlink" title="分布式理论"></a>分布式理论</h1><p>dubbo</p>
+<h1 id="分布式理论"><a href="#分布式理论" class="headerlink" title="分布式理论"></a>分布式理论</h1><p><a href="http://dubbo.apache.org/zh-cn/docs/user/quick-start.html" target="_blank" rel="noopener">http://dubbo.apache.org/zh-cn/docs/user/quick-start.html</a>  快速开始</p>
+<p>dubbo</p>
 <p>序列化,</p>
 <p>前台,中台,后台</p>
 <p>zookeeper: hadoop ,hive</p>
@@ -1916,8 +1917,7 @@ session<span class="token punctuation">.</span><span class="token function">setA
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>curator-recipes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.12.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<p>生产这</p>
-<pre class=" language-yaml"><code class="language-yaml">server.port=8001
+<h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><pre class=" language-yaml"><code class="language-yaml">server.port=8001
 <span class="token comment" spellcheck="true"># 服务注册中心名字</span>
 dubbo.application.name=provider<span class="token punctuation">-</span>server
 <span class="token comment" spellcheck="true"># 服务注册中心的地址</span>
@@ -1928,6 +1928,15 @@ dubbo.scan.base<span class="token punctuation">-</span>packages=com.lhq.service<
 <p>项目启动就直接看到导入了包了</p>
 <p>开启zookeeper</p>
 <p>127.0.0.1:7001(需开启dubbo.jar)</p>
+<h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><pre class=" language-yaml"><code class="language-yaml">server.port=8001
+<span class="token comment" spellcheck="true"># 服务注册中心名字</span>
+dubbo.application.name=customer<span class="token punctuation">-</span>server
+<span class="token comment" spellcheck="true"># 服务注册中心的地址</span>
+dubbo.registry.address=zookeeper<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span><span class="token number">2181</span></code></pre>
+<p>消费端和提供端的类必须相同</p>
+<p>服务可以不同</p>
+<p><img src="/2020/08/05/kuang-shen-shuo-java-spring-boot/image-20201012192629472.png" alt="image-20201012192629472"></p>
+<p>步骤:<br>前提: zookeeper服务 已开启!<br>1.提供者提供服务<br>    1.导入依赖<br>    2.配置注册中心的地址，以及服务发现名，和要扫描的包~<br>    3.在想要被注册的服务.上面<del>增加一一个注解@Service<br>2.消费者如何消费<br>    1.导入依赖<br>    2.配置注册中心的地址，配置自己的服务名</del><br>    3.从远程注入服务~ @Reference</p>
 
             </div>
             <hr/>

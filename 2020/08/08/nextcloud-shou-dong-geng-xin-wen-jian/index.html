@@ -454,6 +454,8 @@
 <p>如果你在linux   Shell里面,传入文件,删除文件,web端不会更新的需要运行命令</p>
 <pre class=" language-bash"><code class="language-bash">docker <span class="token function">exec</span> -it nextcloud /bin/bash -c <span class="token string">"sudo -u www-data php occ files:scan --all"</span></code></pre>
 <p>PS : 提示找不到sudo </p>
+<p>进入docker nextcloud </p>
+<pre class=" language-bash"><code class="language-bash">docker <span class="token function">exec</span> -it nextcloud /bin/bash</code></pre>
 <pre class=" language-bash"><code class="language-bash">容器内避免使用roo，建立新用户执行命令 使用sudo ，提示如下
 
 bash: sudo: <span class="token function">command</span> not found
@@ -462,7 +464,9 @@ bash: sudo: <span class="token function">command</span> not found
 
 <span class="token function">apt-get</span> update
 
-<span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">sudo</span></code></pre>
+<span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">sudo</span>
+
+</code></pre>
 
             </div>
             <hr/>
@@ -729,12 +733,12 @@ bash: sudo: <span class="token function">command</span> not found
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/win/">
-                        <span class="chip bg-color">win</span>
-                    </a>
-                    
                     <a href="/tags/技巧/">
                         <span class="chip bg-color">技巧</span>
+                    </a>
+                    
+                    <a href="/tags/win/">
+                        <span class="chip bg-color">win</span>
                     </a>
                     
                 </div>
