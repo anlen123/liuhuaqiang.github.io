@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="83. 删除排序链表中的重复元素, 未闻丶死讯的博客">
+    <meta name="keywords" content="ffmpeg, 未闻丶死讯的博客">
     <meta name="description" content="菜鸡博客，大佬勿喷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>83. 删除排序链表中的重复元素 | 未闻丶死讯的博客</title>
+    <title>ffmpeg | 未闻丶死讯的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">83. 删除排序链表中的重复元素</h1>
+                    <h1 class="description center-align post-title">ffmpeg</h1>
                 </div>
             </div>
         </div>
@@ -417,27 +417,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
-                            <a href="/tags/算法题/">
-                                <span class="chip bg-color">算法题</span>
+                            <a href="/tags/ffmpeg/">
+                                <span class="chip bg-color">ffmpeg</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/算法/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -446,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-07
+                    2020-10-22
                 </div>
                 
 
@@ -462,37 +453,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="83-删除排序链表中的重复元素"><a href="#83-删除排序链表中的重复元素" class="headerlink" title="83. 删除排序链表中的重复元素"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/" target="_blank" rel="noopener">83. 删除排序链表中的重复元素</a></h1><p>给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: 1-&gt;1-&gt;2
-输出: 1-&gt;2</code></pre><p><strong>示例 2:</strong></p>
-<pre><code>输入: 1-&gt;1-&gt;2-&gt;3-&gt;3
-输出: 1-&gt;2-&gt;3</code></pre><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */</span>
-class Solution <span class="token punctuation">{</span>
-public<span class="token punctuation">:</span>
-    ListNode<span class="token operator">*</span> <span class="token function">deleteDuplicates</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>head<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-        ListNode<span class="token operator">*</span> pp<span class="token operator">=</span>head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>pp<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>pp<span class="token operator">-></span>val <span class="token operator">==</span> pp<span class="token operator">-></span>next<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                ListNode<span class="token operator">*</span> p <span class="token operator">=</span> pp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-                pp<span class="token operator">-></span>next <span class="token operator">=</span>p<span class="token operator">-></span>next<span class="token punctuation">;</span>
-                delete p<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                pp<span class="token operator">=</span>pp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+                <h1 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h1><h2 id="按时间切割视频"><a href="#按时间切割视频" class="headerlink" title="按时间切割视频"></a>按时间切割视频</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i in.mp4 -c copy -ss 开始时间 -t 持续时间 out.mp4
+ps : 
+ffmpeg -i inputfile.mp4 -c copy -ss00:05:00 -t 00:22:00 outfile.mp4</code></pre>
+<h2 id="按顺序帧提取图片出来"><a href="#按顺序帧提取图片出来" class="headerlink" title="按顺序帧提取图片出来"></a>按顺序帧提取图片出来</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i in.mp4 %04d.png 后面有个d </code></pre>
+<h2 id="提取音频"><a href="#提取音频" class="headerlink" title="提取音频"></a>提取音频</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i 1.mp4 -f mp3 1.mp3</code></pre>
+<p>只提取视频文件</p>
+<pre class=" language-cmd"><code class="language-cmd">ffmpeg -i 1.mp4 -vcodec copy -an 2.mp4</code></pre>
+<h2 id="多媒体格式转换"><a href="#多媒体格式转换" class="headerlink" title="多媒体格式转换"></a>多媒体格式转换</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i killer.mp4 -vcodec copy -acodec copy out.flv
+参数说明：
+`-i`：被处理的多媒体文件
+`vcodec`:视频编解码处理方式
+`acodec`：音频编解码处理方式</code></pre>
 
             </div>
             <hr/>
@@ -518,7 +490,7 @@ public<span class="token punctuation">:</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2020/05/07/83.shan-chu-pai-xu-lian-biao-zhong-de-chong-fu-yuan-su/">https://liuhuaqiang.top/2020/05/07/83.shan-chu-pai-xu-lian-biao-zhong-de-chong-fu-yuan-su/</a>
+                    <a href="https://liuhuaqiang.top/2020/10/22/ffmpeg/">https://liuhuaqiang.top/2020/10/22/ffmpeg/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,12 +528,12 @@ public<span class="token punctuation">:</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
-                                <a href="/tags/算法题/">
-                                    <span class="chip bg-color">算法题</span>
+                                <a href="/tags/ffmpeg/">
+                                    <span class="chip bg-color">ffmpeg</span>
                                 </a>
                             
                         </div>
@@ -729,52 +701,50 @@ public<span class="token punctuation">:</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/07/572.ling-yi-ge-shu-de-zi-shu/">
+                <a href="/2020/10/22/ffmpeg/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="572. 另一个树的子树">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="ffmpeg">
                         
-                        <span class="card-title">572. 另一个树的子树</span>
+                        <span class="card-title">ffmpeg</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            572. 另一个树的子树给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。
-示例 1:给定的树 s:
-     3
+                            ffmpeg按时间切割视频ffmpeg -i in.mp4 -c copy -ss 开始时间 -t 持续时间 out.mp4
+ps : 
+ffmpeg -i inputfile.mp4 -c copy -ss00:05:00 -t 00:2
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-22
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/ffmpeg/">
+                        <span class="chip bg-color">ffmpeg</span>
                     </a>
                     
                 </div>
@@ -788,34 +758,43 @@ public<span class="token punctuation">:</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/07/820.dan-ci-de-ya-suo-bian-ma/">
+                <a href="/2020/10/21/shell-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="820. 单词的压缩编码">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Shell学习">
                         
-                        <span class="card-title">820. 单词的压缩编码</span>
+                        <span class="card-title">Shell学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            820. 单词的压缩编码给定一个单词列表，我们将这个列表编码成一个索引字符串 S 与一个索引列表 A。
-例如，如果这个列表是 [“time”, “me”, “bell”]，我们就可以将其表示为 S = “time#bell#” 和 inde
+                            shell学习基础切换su 
+
+不加- 如 su lhq  nologshell
+
+加- 如  su - lhq loginshell
+
+
+
+read ip 是输入
+
+位置变量
+
+$1 是后面跟的第一个变量
+
+设置环境变量的关键字 expo
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-21
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
@@ -823,12 +802,12 @@ public<span class="token punctuation">:</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
                     </a>
                     
                 </div>
