@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="归并排序, 未闻丶死讯的博客">
+    <meta name="keywords" content="Mysql索引优化, 未闻丶死讯的博客">
     <meta name="description" content="菜鸡博客，大佬勿喷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>归并排序 | 未闻丶死讯的博客</title>
+    <title>Mysql索引优化 | 未闻丶死讯的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">归并排序</h1>
+                    <h1 class="description center-align post-title">Mysql索引优化</h1>
                 </div>
             </div>
         </div>
@@ -417,27 +417,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
-                            <a href="/tags/算法题/">
-                                <span class="chip bg-color">算法题</span>
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/算法/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -446,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-07
+                    2020-10-23
                 </div>
                 
 
@@ -462,48 +453,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><a href="https://www.bilibili.com/video/BV1Ax411U7Xx" target="_blank" rel="noopener">视频教程</a></p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//归并排序</span>
-<span class="token comment" spellcheck="true">/*********************/</span>
-<span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> M<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> left_size <span class="token operator">=</span> M<span class="token operator">-</span>L<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right_size <span class="token operator">=</span> R<span class="token operator">-</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> left<span class="token punctuation">[</span>left_size<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right<span class="token punctuation">[</span>right_size<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//产生两个左右数组</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> L<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>M<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        left<span class="token punctuation">[</span>i<span class="token operator">-</span>L<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> M<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>R<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        right<span class="token punctuation">[</span>i<span class="token operator">-</span>M<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>k <span class="token operator">=</span> L<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size <span class="token operator">&amp;&amp;</span> j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//数组比较那个小,就插入</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">merger_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//分治归并</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>L<span class="token operator">==</span>R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> M <span class="token operator">=</span> <span class="token punctuation">(</span>L<span class="token operator">+</span>R<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/*******************/</span>
-</code></pre>
+                <h1 id="MYSQL索引优化"><a href="#MYSQL索引优化" class="headerlink" title="MYSQL索引优化"></a>MYSQL索引优化</h1><h2 id="一-存储引擎"><a href="#一-存储引擎" class="headerlink" title="一.存储引擎"></a>一.存储引擎</h2><p>mysql 的存储引擎有三种: </p>
+<p>innoDB ,MyISAM,MEMORY (Hash索引)</p>
+<p>好文章:  <a href="https://blog.csdn.net/qq_35642036/article/details/82820178" target="_blank" rel="noopener">https://blog.csdn.net/qq_35642036/article/details/82820178</a></p>
+<p>  <strong>MyISAM是非聚集索引，也是使用B+Tree作为索引结构，索引和数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。</strong></p>
+<p>​    <strong>也就是说：InnoDB的B+树主键索引的叶子节点就是数据文件，==辅助索引的叶子节点是主键的值==；而MyISAM的B+树主键索引和辅助索引的叶子节点都是数据文件的地址指针。</strong></p>
+<p><img src="/2020/10/23/mysql-suo-yin-you-hua/image-20201022111036577.png" alt="image-20201022111036577"></p>
+<p>查看查询计划: </p>
+<pre class=" language-sql"><code class="language-sql">expain <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> actor</code></pre>
+<p><img src="/2020/10/23/mysql-suo-yin-you-hua/image-20201022111122419.png" alt="image-20201022111122419"></p>
+<p>possible_keys : 可能用到的索引</p>
+<p>key: 实际用到的索引</p>
+<p><img src="/2020/10/23/mysql-suo-yin-you-hua/%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="数据库"></p>
+<h2 id="二-索引的分类"><a href="#二-索引的分类" class="headerlink" title="二.索引的分类"></a>二.索引的分类</h2><h3 id="1-主键索引"><a href="#1-主键索引" class="headerlink" title="1.主键索引"></a>1.主键索引</h3><h3 id="2-唯一键索引"><a href="#2-唯一键索引" class="headerlink" title="2.唯一键索引"></a>2.唯一键索引</h3><h3 id="3-普通索引"><a href="#3-普通索引" class="headerlink" title="3.普通索引"></a>3.普通索引</h3><h3 id="4-全文索引"><a href="#4-全文索引" class="headerlink" title="4.全文索引"></a>4.全文索引</h3><h3 id="5-组合索引"><a href="#5-组合索引" class="headerlink" title="5.组合索引"></a>5.组合索引</h3><p><strong>回表</strong>(普通索引中):  innoDB存储引擎的普通索引,查找到的数组并不是数据文件,是主键id ,通过主键id 去主键的B+树里面查找数组就叫回表操作.</p>
+<p><strong>覆盖索引</strong>: 只获取了索引的字段,没其他索引字段,直接找到主键表里面找到值.</p>
+<p><strong>最左匹配</strong>(联合索引中): </p>
+<pre class=" language-sql"><code class="language-sql">现在 联合索引<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
+四条查询语句
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> xx <span class="token keyword">where</span> name<span class="token operator">=</span> <span class="token string">"1"</span>  用了
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> xx <span class="token keyword">where</span> name<span class="token operator">=</span> <span class="token string">"1"</span> <span class="token operator">and</span> age<span class="token operator">=</span><span class="token number">1</span>  用了
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> xx <span class="token keyword">where</span> age <span class="token operator">=</span> <span class="token number">1</span>   没用 
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> xx <span class="token keyword">where</span> age <span class="token operator">=</span> <span class="token number">1</span> ans name <span class="token operator">=</span> <span class="token string">"1"</span>  用了 <span class="token punctuation">(</span>有优化器的<span class="token punctuation">)</span></code></pre>
+<p><strong>索引下推</strong>:(组合索引中)</p>
+<p>namc,age<br>1.先根据name列从存储明擎中把符合规则的数据拉取到mysq1的server层<br>2.在server层按照age进行数据过滤</p>
+<p>1.直接从存储引擎拉取数据的时候直接按照nare和age做判断，将符合的结果返回给mysqlserver</p>
+<p><strong>谓词下推</strong>:<br>select t1.nane, L2.nane from t1 Join 12 on t1.id = L2.id<br>1、把所有的字段先做表关联，然后再从关联好的表中选择需要的4个字段<br>2、先把两张表需要的4个字段取出，然后在做表关联   (V)</p>
+<h2 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h2><p><strong>每个表只能有一个聚集索引 ，因为目录只能按照一种方法进行排序。</strong></p>
+<p>(innodb)聚簇索引: 将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据</p>
+<p>(myisam)非聚簇索引: 将数据与索引分开存储，<strong>索引结构的叶子节点指向了数据对应的位置</strong></p>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><p>连接数据库:</p>
+<pre class=" language-sql"><code class="language-sql">mysql <span class="token operator">-</span>h <span class="token number">123.56</span><span class="token punctuation">.</span><span class="token number">145.243</span> <span class="token operator">-</span>u root P <span class="token number">3307</span> <span class="token operator">-</span>p</code></pre>
+<p>查看查询计划</p>
+<pre class=" language-sql"><code class="language-sql">expain <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> users<span class="token punctuation">;</span></code></pre>
+<p>查看查询过程中的耗时操作</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">set</span> profiling <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+运行一下查询语句
+<span class="token keyword">show</span> profile <span class="token keyword">for</span> query <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<h2 id="优化细节"><a href="#优化细节" class="headerlink" title="优化细节"></a>优化细节</h2><ol>
+<li><p>把计算过程放在业务层,不放在查询语句中</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> age <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> age <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">+</span><span class="token number">20</span></code></pre>
+</li>
+<li><p>尽量使用主键查询,不用其他索引,因为不用回表操作</p>
+</li>
+<li><p>使用前缀索引    如果索引过长,需要取强n个字符串来建索引</p>
+</li>
+<li><p>使用索引扫描来进行排序</p>
+</li>
+<li><p>union,all,in 都能使用索引,当推荐使用in </p>
+</li>
+<li><p>范围列,可以使用索引,,但范围列后面的地方无法使用索引</p>
+</li>
+<li><p>强制类型转换会触发全表扫描</p>
+</li>
+<li><p>更新频繁,数据区别不大的字段,不适于建立索引</p>
+</li>
+<li><p>创建索引的列,不允许为空</p>
+</li>
+<li><p>表连接的时候,最多不允许超过三张</p>
+</li>
+<li><p>多用limit</p>
+</li>
+<li><p>单表索引不超过5个</p>
+</li>
+<li><p>创建索引时并不是越多越好,不不过早优化.</p>
+</li>
+</ol>
 
             </div>
             <hr/>
@@ -529,7 +544,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/">https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/</a>
+                    <a href="https://liuhuaqiang.top/2020/10/23/mysql-suo-yin-you-hua/">https://liuhuaqiang.top/2020/10/23/mysql-suo-yin-you-hua/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,12 +582,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
-                                <a href="/tags/算法题/">
-                                    <span class="chip bg-color">算法题</span>
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
                                 </a>
                             
                         </div>
@@ -740,56 +755,50 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/07/kuai-su-pai-xu/">
+                <a href="/2020/10/23/mysql-suo-yin-you-hua/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="快速排序">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Mysql索引优化">
                         
-                        <span class="card-title">快速排序</span>
+                        <span class="card-title">Mysql索引优化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            快速排序视频教程
-
-#include &lt;bits/stdc++.h>
-using namespace std;
-void quck_sort(int a[],int l, int r){
-    if(l>=r) return ;
- 
+                            MYSQL索引优化一.存储引擎mysql 的存储引擎有三种: 
+innoDB ,MyISAM,MEMORY (Hash索引)
+好文章:  https://blog.csdn.net/qq_35642036/article/details/8
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-23
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                 </div>
@@ -803,39 +812,33 @@ void quck_sort(int a[],int l, int r){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/07/ou-la-han-shu/">
+                <a href="/2020/10/22/qiu-di-k-da-de-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="欧拉函数">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="求第k大的数">
                         
-                        <span class="card-title">欧拉函数</span>
+                        <span class="card-title">求第k大的数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            欧拉函数#include &lt;bits/stdc++.h>
+                            求第k大的数==利用快排,寻找那个数的当前位置,如果小于了要找的数,再找左区间,否则找右区间==
+#include&lt;bits/stdc++.h>
 using namespace std;
-int cnt = 0;
-int vis[100000];
-int prim[100000];
-int n = 100;
-int ma
+
+//int parrt(int *arr,i
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
@@ -843,12 +846,12 @@ int ma
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/面试题/">
+                        <span class="chip bg-color">面试题</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/算法/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
