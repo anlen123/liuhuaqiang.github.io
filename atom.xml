@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liuhuaqiang.top/"/>
-  <updated>2020-11-03T04:06:16.663Z</updated>
+  <updated>2020-11-15T14:04:14.436Z</updated>
   <id>https://liuhuaqiang.top/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python协程异步</title>
+    <link href="https://liuhuaqiang.top/2020/11/15/python-xie-cheng-yi-bu/"/>
+    <id>https://liuhuaqiang.top/2020/11/15/python-xie-cheng-yi-bu/</id>
+    <published>2020-11-15T14:02:45.000Z</published>
+    <updated>2020-11-15T14:04:14.436Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="python协程异步/91">协程博客</a></p><p><a href="https://www.bilibili.com/video/BV1Ke411W71L" target="_blank" rel="noopener">协程教程视频</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;python协程异步/91&quot;&gt;协程博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1Ke411W71L&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;协程教程视频&lt;/a&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://liuhuaqiang.top/tags/python/"/>
+    
+      <category term="协程" scheme="https://liuhuaqiang.top/tags/%E5%8D%8F%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQLlite</title>
+    <link href="https://liuhuaqiang.top/2020/11/04/sqllite/"/>
+    <id>https://liuhuaqiang.top/2020/11/04/sqllite/</id>
+    <published>2020-11-04T06:34:10.000Z</published>
+    <updated>2020-11-04T06:41:54.257Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="python-使用轻量级数据库SQLlite"><a href="#python-使用轻量级数据库SQLlite" class="headerlink" title="python 使用轻量级数据库SQLlite"></a>python 使用轻量级数据库SQLlite</h1><h2 id="先创建出一个db文件"><a href="#先创建出一个db文件" class="headerlink" title="先创建出一个db文件"></a>先创建出一个db文件</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> sqlite3conn <span class="token operator">=</span> sqlite3<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">"test.db"</span><span class="token punctuation">)</span>con<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><h2 id="建表-也可以用图像界面软件建表"><a href="#建表-也可以用图像界面软件建表" class="headerlink" title="建表,也可以用图像界面软件建表"></a>建表,也可以用图像界面软件建表</h2><pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> <span class="token keyword">user</span><span class="token punctuation">(</span>    id   <span class="token keyword">integer</span>  <span class="token operator">not</span> <span class="token boolean">null</span>        <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>    name <span class="token keyword">text</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>    age  <span class="token keyword">int</span>  <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>PS: 主键是integer才能自增</p><h2 id="进行sql语句封装"><a href="#进行sql语句封装" class="headerlink" title="进行sql语句封装"></a>进行sql语句封装</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> sqlite3<span class="token keyword">def</span> <span class="token function">cmdSql</span><span class="token punctuation">(</span>sql<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>    conn <span class="token operator">=</span> sqlite3<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">"test.db"</span><span class="token punctuation">)</span>    <span class="token keyword">try</span><span class="token punctuation">:</span>        c <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 获取游标</span>        c<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 执行语句</span>        conn<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token keyword">except</span><span class="token punctuation">:</span>        <span class="token keyword">return</span> <span class="token boolean">False</span>    <span class="token keyword">finally</span><span class="token punctuation">:</span>        conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token keyword">return</span> <span class="token boolean">True</span><span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    sql <span class="token operator">=</span> f<span class="token triple-quoted-string string">'''    insert into user(name, age) VALUES ("刘华强",{x});    '''</span>    <span class="token keyword">print</span><span class="token punctuation">(</span>cmdSql<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><h1 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h1><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">cmdSqlSelect</span><span class="token punctuation">(</span>sql<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> list<span class="token punctuation">:</span>    conn <span class="token operator">=</span> sqlite3<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token string">"test.db"</span><span class="token punctuation">)</span>    <span class="token keyword">try</span><span class="token punctuation">:</span>        c <span class="token operator">=</span> conn<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 获取游标</span>        ret <span class="token operator">=</span> list<span class="token punctuation">(</span>c<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 执行语句</span>        <span class="token keyword">return</span> ret    <span class="token keyword">finally</span><span class="token punctuation">:</span>        conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;python-使用轻量级数据库SQLlite&quot;&gt;&lt;a href=&quot;#python-使用轻量级数据库SQLlite&quot; class=&quot;headerlink&quot; title=&quot;python 使用轻量级数据库SQLlite&quot;&gt;&lt;/a&gt;python 使用轻量级数据库SQLli
+      
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://liuhuaqiang.top/tags/python/"/>
+    
+      <category term="sql" scheme="https://liuhuaqiang.top/tags/sql/"/>
+    
+  </entry>
   
   <entry>
     <title>python命令行方式</title>
@@ -488,57 +541,6 @@
       <category term="leetcode" scheme="https://liuhuaqiang.top/tags/leetcode/"/>
     
       <category term="算法" scheme="https://liuhuaqiang.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows10_64位系统设置开机自动启动</title>
-    <link href="https://liuhuaqiang.top/2020/08/08/windows10-64-wei-xi-tong-she-zhi-kai-ji-zi-dong-qi-dong/"/>
-    <id>https://liuhuaqiang.top/2020/08/08/windows10-64-wei-xi-tong-she-zhi-kai-ji-zi-dong-qi-dong/</id>
-    <published>2020-08-08T07:50:16.000Z</published>
-    <updated>2020-08-09T07:15:00.335Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Windows10-64位系统设置FRPC开机自动启动"><a href="#Windows10-64位系统设置FRPC开机自动启动" class="headerlink" title="Windows10 64位系统设置FRPC开机自动启动"></a>Windows10 64位系统设置FRPC开机自动启动</h1><p>每次运行客户端都需要打开一个命令提示符窗口，很麻烦也不方便。有没有什么办法能够让客户端以Windows服务的方式在后台默默运行呢？答案当然是有的。用winsw让任何Windows程序都能运行为服务，完美解决了这个问题。</p><p>首先要下载winsw。它是一个单个的可执行文件，我们到<a href="https://github.com/kohsuke/winsw/releases" target="_blank" rel="noopener">Github release</a>这里就可以下载winsw了。一般来说当然是下载最新的。winsw可以运行在.NET2和.NET4两个版本上，当然如果使用Win10等比较新的系统，最好下载更新版本的.NET。</p><p>下载完之后最好把文件改成一个比较短小的名字，例如winsw.exe这样的，方便后面输入命令。</p><p>下面只说说配置。我这里是将winsw.exe和frpc.exe放到了一起，这样只需要直接填写程序名称。然后在和winsw.exe同级的目录下，新建winsw.xml文件，输入以下内容。</p><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>service</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>frp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>frp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>用frp发布本地电脑网站到外网<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>executable</span><span class="token punctuation">></span></span>frpc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>executable</span><span class="token punctuation">></span></span>  命令    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arguments</span><span class="token punctuation">></span></span>-c frpc.ini<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>arguments</span><span class="token punctuation">></span></span> # 命令参数    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logmode</span><span class="token punctuation">></span></span>reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>logmode</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>service</span><span class="token punctuation">></span></span></code></pre><p>然后打开管理员权限命令提示符，使用下面的命令安装并启动服务。(执行winsw install如果返回值为0，说明已将程序注册为服务)</p><p>winsw install</p><p>winsw start</p><p>说明：如果不再需要这个服务，使用winsw uninstall即可卸载服务。当然还有诸如start、stop这样的命令启动和关闭服务。更重要的是，没有那个既不美观又烦人的命令提示符窗口。</p><p>这样，一个自定义内网穿透的网站就搭建完成了。当然，frp的功能还不仅于此。如果看看官方文档的话，就会发现它不仅可以将本地网站映射到外网，还可以用作反向代理、自定义DNS服务器等等，功能非常强大。怪不得在Github上这个项目有高达4000的星星数。</p><pre class=" language-xml"><code class="language-xml">一、WinSW介绍官方介绍如下：WinSW is an executable binary, which can be used to wrap and manage a custom process as a Windows service.现实生活中，我们使用windows系统的电脑的时候，可能会遇到这么一种情况：想把一些应用程序添加为开机启动项。对于有图形界面的应用程序，一般不存在问题。但是如果想运行命令行应用程序，就不是那么方便了。一种笨办法就是写个bat，放到启动文件夹里，就可以开机启动了。开机之后，你就会发现，这样会一直显示着一个CMD窗口，而且这个窗口不能关，关了程序就停了。其实Windows系统自带后台程序管理的功能，也就是我们经常用到的服务。但是Windows的服务只有程序的开发者在写程序的时候引用到这个功能，我们才能利用服务来控制程序的启动和关闭。对于一般的命令行程序来说，没办法利用服务。今天要介绍的WinSW，它就是一个可以将Windows上的任何一个程序注册为服务的工具。同样也可以进行卸载该服务。二、WinSW使用1、工具下载这个工具可以在GitHub上【https://github.com/kohsuke/winsw/releases】进行下载。当然，在GitHub上也可以获取到工具的源码【https://github.com/kohsuke/winsw】。下载完之后最好把文件改成一个比较短小的名字，例如：WinSW.exe 方便后面输入命令时使用。2、修改配置文件我们需要编写一个和程序同名的XML文件作为WinSW的配置文件。大体的格式如下：这里只是简单介绍使用WinSW的流程，配置项实际也不止那么几个，在第三部分有关于配置文件的详细解释。3、注册服务配置文件编写完之后，将配置文件与WinSW.exe放在同一目录中。注意对应WinSW.exe的配置文件名称应该是WinSW.xml。此时，WinSW.exe、WinSW.xml以及你的应用程序应该都是在同一目录中。然后用管理员权限打开一个命令提示符窗口，cd进入到应用程序所在目录，可以通过输入下面的命令来进行控制应用程序对应的服务：winsw install 安装服务winsw uninstall 卸载服务winsw start 开启服务winsw stop 停止服务winsw restart 重新启动服务winsw status 检查服务的当前状态安装服务命令执行后，如果返回值为0，就表示服务已经安装成功。此时在windows服务的窗口，就能看到你刚才安装的服务了。三、WinSW配置说明（翻译xmlConfigFile.md）1、配置文件的文件结构配置文件是一个XML格式文件，其根元素必须是“service”节点。2、配置文件中的环境变量表达式XML配置文件中，可以包含形如“%Name%”的环境变量表达式。如果发现这种情况，将会自动被变量的实际值替换掉。如果引用未定义的环境变量，则不会进行替换。此外，服务包装器本身定义了一个名为“BASE”的环境变量，它指向一个包含重命名为“winsw.exe”的文件的目录。这在引用同一目录中的其他文件的时候是很有用的。由于这本身就是一个环境变量，所以这个值也可以从服务包装器启动的子进程中访问。3、配置项说明（1）id指定在Windows系统内部使用的识别服务的ID。在系统中安装的所有服务中，这必须是唯一的，它应该完全由字母数字字符组成。（2）name服务的简短名称，它可以包含空格和其他字符。尽量简短，就像“id”一样，在系统的所有服务名称中，也要保持唯一。（3）description该服务可读描述。当选中该服务时，它将显示在Windows服务管理器中。（4）executable该元素指定要启动的可执行文件。它可以是绝对路径，也可以指定可执行文件的名称，然后从环境变量“PATH”中搜索（需要注意的是，服务经常在不同的用户账户中运行，因此它可能需要有不同于你设置在环境变量Path中的路径）。（5）startmode该元素指定Windows服务的启动模式。它可以是下列值之一：开机、系统、自动或手动。有关详细信息，请参阅MSDN【https://msdn.microsoft.com/en-us/library/aa384896%28v=vs.85%29.aspx】。默认值是“Automatic”。（6）delayedAutoStart这个布尔选项允许在定义“自动”启动模式时延时启动。关于延时启动模式，可参阅【https://blogs.technet.microsoft.com/askperf/2008/02/02/ws2008-startup-processes-and-delayed-automatic-start】。请注意，延时启动模式在早于Windows 7和Windows Server 2008的操作系统中可能失效。在这种情况下，Windows服务安装可能会失败。（7）depend指定该服务所依赖的其他服务的id。当服务“X”依赖于服务“Y”时，“X”只能在“Y”运行后运行。可以使用多个元素来指定多个依赖项。（8）logging关于服务进程的日志以及错误信息，有单独的一个配置说明文档【WinSW Logging and Error Reporting】，咱们下次再详细说。（9）argument该元素指定要传递给可执行文件的参数。如果有必要，Winsw会给每一个参数外加引号（“”），所以为了避免双重引号，尽量不要在参数中使用引号。为了向后兼容，可以使用“arguments”来指定单个元素中的整个命令行。（10）stopargument/stopexecutable请求停止服务时，winsw通过调用终止进程的API函数来立即终结服务。然而，如果存在“stopargument”元素，winsw将通过使用”stopargument“作为参数，来启动“executable“元素（或者是”stopexecutable“元素）中配置的进程，来代替调用终止进程的API函数。期望通过这种方式来优雅的关闭服务进程。然后，Winsw将等待两个进程自行退出，然后向Windows报告该服务已经终止。当你使用“stopargument”元素时，你必须使用“startargument”元素代替“argument”元素。参见下面的完整示例：catalina.shjpdaruncatalina.shstop注意，元素的名称是“startargument”，而不是“startarguments”。因此，要指定多个参数，你必须指定多个元素。（11）stoptimeout当服务被要求停止时，winsw首先尝试调用GenerateConsoleCtrlEvent 方法（类似于Ctrl+C），然后等待长达15秒的时间，让进程自行退出。如果这样做了，进程关闭还是失败了（或者如果进程没有控制台），然后winsw会调用终止进程的API函数来立即终止服务。这个可选元素允许您改变这个“15秒”的值，这样您就可以控制winsw等待服务进程自行关闭的时间。如何指定时间期限，可参考下面的“onfailure”元素的设置：10sec（12）env如果有必要，可以使用这个可多次指定的可选元素，为子进程设置环境变量。其语法是:（13）interactive如果指定了这个可选的元素，那么该服务将被允许与桌面交互，比如显示一个新的窗口和对话框。如果你的程序需要GUI，那么设置如下：请注意，自从引入UAC（Windows Vista及之后的版本）以来，服务不再被允许与桌面交互。在这些操作系统中，所有这一切都是为了允许用户切换到一个单独的窗口来与服务交互。（14）beeponshutdown这个可选元素是为了在服务关闭时发出简单的音调。这个特性应该只用于调试，因为一些操作系统和硬件不支持这种功能。（15）download这个可选元素可以多次指定，让服务包装器从URL检索资源，并将其作为文件放置在本地。这个操作是在服务启动时运行的，在“executable”指定的应用程序启动之前。对于需要身份验证的服务器，必须根据认证的类型指定一些参数。只有基本身份验证需要额外的子参数。支持的身份验证类型是:none：默认类型，不能指定sspi：微软认证，包括Kerberos、NTLM等。basic：基本身份认证，子参数包括：1）user=“UserName”2）password=“Password”3）unsecureAuth=“true”：default=“false”当传输协议是未加密的HTTP数据传输时，参数“unsecureAuth”才生效。这是一个安全漏洞，因为凭证是用明文发送的！对于SSPI认证，这是不相关的，因为身份验证令牌是加密的。对于使用HTTPS传输协议的目标服务器这是必须的，因为服务器发出的CA证书是客户端信任的。这通常是服务器在Internet上的情况。当一个组织在内网中使用自发布的CA时，情况可能不是这样。在这种情况下，有必要将CA导入到Windows客户端的证书MMC。可以看一下微软的说明（https://technet.microsoft.com/en-us/librar/cc754841.aspx）。自发布CA必须被导入到计算机的受信任的根证书颁发机构。默认情况下，如果操作失败（例如，无效的下载地址），“download”命令也不会在服务启动时失败。为了在这种情况下强制下载失败，可以指定“failOnError”布尔属性。示例如下：这是开发自动更新服务的另一个有用的构建块。（16）onfailure这个可选的可重复元素控制了winsw启动的进程失败后的行为（例如，执行带有非零退出码的退出操作）。例如，上面的配置使服务在第一次故障后10秒内重新启动，在第二次失败后20秒重新启动，如果服务再次失败，Windows将重新启动。每个元素都包含一个强制的“action”属性，它控制着Windows SCM将要做什么，以及可选的“延迟”属性，它控制着延迟，直到采取行动为止。“action”属性的值包含以下几种：restart：重启服务reboot：重启系统none：什么也不做，就让服务那么停着延迟属性的可能后缀是sec/secs/min/mins/hours/day/days。如果未设置，延迟属性默认为0。如果服务持续失败的次数超出了配置的“onfailure”的数量，那么最后的操作将会被重复。因此，如果只是想要自动重启服务，只需指定一个“onfailure”元素即可：（17）resetfailure这个可选元素控制了Windows SCM重新设置故障计数的时间。例如，如果指定``，并且您的服务持续运行超过一个小时，那么故障计数将重置为零。这会影响故障操作的行为（见上面的“onfailure”）。换句话说，这是你认为服务已经成功运行的持续时间。默认值为1天。（18）Service account有可能需要指定服务运行所需要的的useraccount（和密码）。要做到这一点，可以按照下面的方法指定一个“serviceaccount”元素：YOURDOMAINuseraccountPa55w0rdtrue“”是可选的。如果设置为“true”，则会自动给上面列出的用户设置“Allow Log On As A Service”的权限。可以使用（组）管理服务帐户 附加'$'到帐户名称，并删除'password'元素：YOURDOMAINgmsa_account$true（19）Working directory有些服务需要使用指定的工作目录运行。要做到这一点，要指定一个像这样的“workingdirectory”元素：C:\application（20）priority可选地指定服务流程的调度优先级（类似于Unix）。可能的值有“idle”、“belownormal”、“normal”、“abovenormal”、“high”、“realtime”（大小写不敏感）。idle指定高于正常值的优先级会产生意想不到的后果。请参阅MSDN文章ProcessPriorityClass Enumeration来了解详细信息。这个特性主要是为了在较低的优先级上启动一个进程，以避免干扰计算机的交互使用。（21）stopparentprocessfirst可选地指定服务关闭的顺序。如果“true”，父进程首先关闭。当主进程是一个控制台时，这是很有用的，它可以响应Ctrl+C命令，并优雅地关闭子进程。true作者：胡济川链接：https://www.jianshu.com/p/1ee1a8526cc6来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Windows10-64位系统设置FRPC开机自动启动&quot;&gt;&lt;a href=&quot;#Windows10-64位系统设置FRPC开机自动启动&quot; class=&quot;headerlink&quot; title=&quot;Windows10 64位系统设置FRPC开机自动启动&quot;&gt;&lt;/a&gt;Windo
-      
-    
-    </summary>
-    
-    
-    
-      <category term="技巧" scheme="https://liuhuaqiang.top/tags/%E6%8A%80%E5%B7%A7/"/>
-    
-      <category term="win" scheme="https://liuhuaqiang.top/tags/win/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nextcloud手动更新文件</title>
-    <link href="https://liuhuaqiang.top/2020/08/08/nextcloud-shou-dong-geng-xin-wen-jian/"/>
-    <id>https://liuhuaqiang.top/2020/08/08/nextcloud-shou-dong-geng-xin-wen-jian/</id>
-    <published>2020-08-08T03:57:17.000Z</published>
-    <updated>2020-10-21T05:08:36.057Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="NextCloud"><a href="#NextCloud" class="headerlink" title="NextCloud"></a>NextCloud</h1><p>一键部署</p><pre class=" language-bash"><code class="language-bash">docker run -d -it --name nextcloud --restart<span class="token operator">=</span>always -p <span class="token variable">$duan</span>:80 -v /data/nextcloud:/var/www/html/data library/nextcloud</code></pre><p>如果你在linux   Shell里面,传入文件,删除文件,web端不会更新的需要运行命令</p><pre class=" language-bash"><code class="language-bash">docker <span class="token function">exec</span> -it nextcloud /bin/bash -c <span class="token string">"sudo -u www-data php occ files:scan --all"</span></code></pre><p>PS : 提示找不到sudo </p><p>进入docker nextcloud </p><pre class=" language-bash"><code class="language-bash">docker <span class="token function">exec</span> -it nextcloud /bin/bash</code></pre><pre class=" language-bash"><code class="language-bash">容器内避免使用roo，建立新用户执行命令 使用sudo ，提示如下bash: sudo: <span class="token function">command</span> not found解决办法 <span class="token function">apt-get</span> update<span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">sudo</span></code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;NextCloud&quot;&gt;&lt;a href=&quot;#NextCloud&quot; class=&quot;headerlink&quot; title=&quot;NextCloud&quot;&gt;&lt;/a&gt;NextCloud&lt;/h1&gt;&lt;p&gt;一键部署&lt;/p&gt;
-&lt;pre class=&quot; language-bash&quot;&gt;&lt;code
-      
-    
-    </summary>
-    
-    
-    
-      <category term="linux" scheme="https://liuhuaqiang.top/tags/linux/"/>
     
   </entry>
   

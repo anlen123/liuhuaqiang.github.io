@@ -317,7 +317,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/2.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
 </script>
 
 
@@ -383,20 +383,20 @@
                 </a>
                 
                 
-                <a href="/categories/vim/" title="vim: 1">
+                <a href="/categories/mysql/" title="mysql: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F8F9F9;">vim
-                        <span class="tag-length">1</span>
+                            style="background-color: #F8F9F9;">mysql
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/mysql/" title="mysql: 2">
+                <a href="/categories/vim/" title="vim: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #82E0AA;">mysql
-                        <span class="tag-length">2</span>
+                            style="background-color: #82E0AA;">vim
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -531,23 +531,29 @@ string get_ss(string s){
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/05/07/kmp-suan-fa/">
+                    <a href="/2020/05/07/dp-xue-xi/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="KMP算法">
+                            <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="dp学习">
                             
-                            <span class="card-title">KMP算法</span>
+                            <span class="card-title">dp学习</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                KMP算法求Next数组vector&lt;int> Next;
-void GetNext(string s){
-    cout&lt;&lt;s&lt;&lt;endl;
-    int n = s.length();
-    Next
+                                dp学习64. 最小路径和
+/*
+求一个N*M 的数组,,从0,0走到最右下角的最短数值是多少
+*/
+
+
+package com.leecode;
+
+import java.util.Scanner;
+
+public class Main 
                             
                         </div>
                         <div class="publish-info">
@@ -585,29 +591,23 @@ void GetNext(string s){
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/05/07/dp-xue-xi/">
+                    <a href="/2020/05/07/kmp-suan-fa/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="dp学习">
+                            <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="KMP算法">
                             
-                            <span class="card-title">dp学习</span>
+                            <span class="card-title">KMP算法</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                dp学习64. 最小路径和
-/*
-求一个N*M 的数组,,从0,0走到最右下角的最短数值是多少
-*/
-
-
-package com.leecode;
-
-import java.util.Scanner;
-
-public class Main 
+                                KMP算法求Next数组vector&lt;int> Next;
+void GetNext(string s){
+    cout&lt;&lt;s&lt;&lt;endl;
+    int n = s.length();
+    Next
                             
                         </div>
                         <div class="publish-info">
@@ -714,59 +714,6 @@ public class Main
                             
                                 820. 单词的压缩编码给定一个单词列表，我们将这个列表编码成一个索引字符串 S 与一个索引列表 A。
 例如，如果这个列表是 [“time”, “me”, “bell”]，我们就可以将其表示为 S = “time#bell#” 和 inde
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/leetcode/">
-                            <span class="chip bg-color">leetcode</span>
-                        </a>
-                        
-                        <a href="/tags/算法题/">
-                            <span class="chip bg-color">算法题</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/05/07/445.liang-shu-xiang-jia-ii/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="445. 两数相加 II">
-                            
-                            <span class="card-title">445. 两数相加 II</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                445. 两数相加 II给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
-你可以假设除了数字 0 之外，这两个数字都不会以零开头。
-进阶：
-如果输入链表不能修
                             
                         </div>
                         <div class="publish-info">
@@ -913,26 +860,74 @@ public class Main
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/05/07/365.shui-hu-wen-ti/">
+                    <a href="/2020/05/07/21.he-bing-liang-ge-you-xu-lian-biao/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="365. 水壶问题">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="21. 合并两个有序链表">
                             
-                            <span class="card-title">365. 水壶问题</span>
+                            <span class="card-title">21. 合并两个有序链表</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                365. 水壶问题有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
+                                21. 合并两个有序链表将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+示例：
+输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4输出：1-&gt;1-&gt;2-&gt;3-&g
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/算法/" class="post-category">
+                                    算法
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
-
-你允许：
-
-装满任意一个水壶
-清空任
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/leetcode/">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/算法题/">
+                            <span class="chip bg-color">算法题</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/05/07/445.liang-shu-xiang-jia-ii/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="445. 两数相加 II">
+                            
+                            <span class="card-title">445. 两数相加 II</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                445. 两数相加 II给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
+你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+进阶：
+如果输入链表不能修
                             
                         </div>
                         <div class="publish-info">
