@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="归并排序, 未闻丶死讯的博客">
+    <meta name="keywords" content="Screen的使用, 未闻丶死讯的博客">
     <meta name="description" content="菜鸡博客，大佬勿喷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>归并排序 | 未闻丶死讯的博客</title>
+    <title>Screen的使用 | 未闻丶死讯的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">归并排序</h1>
+                    <h1 class="description center-align post-title">Screen的使用</h1>
                 </div>
             </div>
         </div>
@@ -417,27 +417,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
-                            </a>
-                        
-                            <a href="/tags/算法题/">
-                                <span class="chip bg-color">算法题</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/算法/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -446,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-07
+                    2020-11-17
                 </div>
                 
 
@@ -462,48 +449,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><a href="https://www.bilibili.com/video/BV1Ax411U7Xx" target="_blank" rel="noopener">视频教程</a></p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//归并排序</span>
-<span class="token comment" spellcheck="true">/*********************/</span>
-<span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> M<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> left_size <span class="token operator">=</span> M<span class="token operator">-</span>L<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right_size <span class="token operator">=</span> R<span class="token operator">-</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> left<span class="token punctuation">[</span>left_size<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right<span class="token punctuation">[</span>right_size<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//产生两个左右数组</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> L<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>M<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        left<span class="token punctuation">[</span>i<span class="token operator">-</span>L<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> M<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>R<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        right<span class="token punctuation">[</span>i<span class="token operator">-</span>M<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>k <span class="token operator">=</span> L<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size <span class="token operator">&amp;&amp;</span> j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//数组比较那个小,就插入</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">merger_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//分治归并</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>L<span class="token operator">==</span>R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> M <span class="token operator">=</span> <span class="token punctuation">(</span>L<span class="token operator">+</span>R<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/*******************/</span>
-</code></pre>
+                <h1 id="1、screen"><a href="#1、screen" class="headerlink" title="1、screen"></a>1、screen</h1><h2 id="新建一个会话"><a href="#新建一个会话" class="headerlink" title="**新建一个会话"></a>**新建一个会话</h2><pre class=" language-sh"><code class="language-sh">screen -S name</code></pre>
+<h2 id="如果你在当前会话中，想要杀死这个会话"><a href="#如果你在当前会话中，想要杀死这个会话" class="headerlink" title="*如果你在当前会话中，想要杀死这个会话: *"></a>*<em>如果你在当前会话中，想要杀死这个会话: *</em></h2><pre class=" language-shell"><code class="language-shell">exit</code></pre>
+<h2 id="如果你不在会话中想要杀死这个会话"><a href="#如果你不在会话中想要杀死这个会话" class="headerlink" title="*如果你不在会话中想要杀死这个会话: *"></a>*<em>如果你不在会话中想要杀死这个会话: *</em></h2><pre class=" language-shell"><code class="language-shell">screen -X -S name quit</code></pre>
+<h2 id="如果你在当前会话中想要退出，不杀死这个回话"><a href="#如果你在当前会话中想要退出，不杀死这个回话" class="headerlink" title="如果你在当前会话中想要退出，不杀死这个回话:"></a><strong>如果你在当前会话中想要退出，不杀死这个回话:</strong></h2><pre class=" language-shell"><code class="language-shell">ctrl+a+d</code></pre>
+<h2 id="如果你不在当前会话中想关闭远程的正在演示的会话-只是让它退出，不会被杀死"><a href="#如果你不在当前会话中想关闭远程的正在演示的会话-只是让它退出，不会被杀死" class="headerlink" title="如果你不在当前会话中想关闭远程的正在演示的会话(只是让它退出，不会被杀死):"></a><strong>如果你不在当前会话中想关闭远程的正在演示的会话(只是让它退出，不会被杀死):</strong></h2><pre class=" language-shell"><code class="language-shell">screen -d name</code></pre>
+<h2 id="重进会话"><a href="#重进会话" class="headerlink" title="重进会话:"></a><strong>重进会话:</strong></h2><pre class=" language-shell"><code class="language-shell">screen -rx name</code></pre>
+<h2 id="查看当前会话"><a href="#查看当前会话" class="headerlink" title="查看当前会话:"></a><strong>查看当前会话:</strong></h2><pre class=" language-shell"><code class="language-shell">screen -ls</code></pre>
+<h2 id="清除没用的会话"><a href="#清除没用的会话" class="headerlink" title="清除没用的会话:"></a><strong>清除没用的会话:</strong></h2><pre class=" language-shell"><code class="language-shell">screen -wipe</code></pre>
+<h2 id="不在当前会话中发送给那个会话一个字符串"><a href="#不在当前会话中发送给那个会话一个字符串" class="headerlink" title="不在当前会话中发送给那个会话一个字符串:"></a><strong>不在当前会话中发送给那个会话一个字符串:</strong></h2><pre class=" language-shell"><code class="language-shell">screen -x -S name -p 0 -X stuff" 字符串"</code></pre>
+<h1 id="2、语法"><a href="#2、语法" class="headerlink" title="2、语法"></a>2、语法</h1><pre><code>$&gt; screen [-AmRvx -ls -wipe][-d &lt;作业名称&gt;][-h &lt;行数&gt;][-r &lt;作业名称&gt;][-s ][-S &lt;作业名称&gt;]</code></pre><p>-A 　将所有的视窗都调整为目前终端机的大小。<br>-d &lt;作业名称&gt; 　将指定的screen作业离线。<br>-h &lt;行数&gt; 　指定视窗的缓冲区行数。<br>-m 　即使目前已在作业中的screen作业，仍强制建立新的screen作业。<br>-r &lt;作业名称&gt; 　恢复离线的screen作业。<br>-R 　先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。<br>-s 　指定建立新视窗时，所要执行的shell。<br>-S &lt;作业名称&gt; 　指定screen作业的名称。<br>-v 　显示版本信息。<br>-x 　恢复之前离线的screen作业。<br>-ls或–list 　显示目前所有的screen作业。<br>-wipe 　检查目前所有的screen作业，并删除已经无法使用的screen作业。</p>
+<hr>
+<h1 id="3、常用screen参数"><a href="#3、常用screen参数" class="headerlink" title="3、常用screen参数"></a>3、常用screen参数</h1><p>screen -S yourname -&gt; 新建一个叫yourname的session<br>screen -ls -&gt; 列出当前所有的session<br>screen -r yourname -&gt; 回到yourname这个session<br>screen -d yourname -&gt; 远程detach某个session<br>screen -d -r yourname -&gt; 结束当前session并回到yourname这个session</p>
+<hr>
+<h1 id="4、在Session下，使用ctrl-a-C-a"><a href="#4、在Session下，使用ctrl-a-C-a" class="headerlink" title="4、在Session下，使用ctrl+a(C-a)"></a>4、在Session下，使用ctrl+a(C-a)</h1><p>C-a ? -&gt; 显示所有键绑定信息<br>C-a c -&gt; 创建一个新的运行shell的窗口并切换到该窗口<br>C-a n -&gt; Next，切换到下一个 window<br>C-a p -&gt; Previous，切换到前一个 window<br>C-a 0..9 -&gt; 切换到第 0..9 个 window<br>Ctrl+a [Space] -&gt; 由视窗0循序切换到视窗9<br>C-a C-a -&gt; 在两个最近使用的 window 间切换<br>C-a x -&gt; 锁住当前的 window，需用用户密码解锁<br>C-a d -&gt; detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。<br>C-a z -&gt; 把当前session放到后台执行，用 shell 的 fg 命令则可回去。<br>C-a w -&gt; 显示所有窗口列表<br>C-a t -&gt; time，显示当前时间，和系统的 load<br>C-a k -&gt; kill window，强行关闭当前的 window<br>C-a [ -&gt; 进入 copy mode，在 copy mode 下可以回滚、搜索、复制就像用使用 vi 一样<br>C-b Backward，PageUp<br>C-f Forward，PageDown<br>H(大写) High，将光标移至左上角<br>L Low，将光标移至左下角<br>0 移到行首<br>$ 行末<br>w forward one word，以字为单位往前移<br>b backward one word，以字为单位往后移<br>Space 第一次按为标记区起点，第二次按为终点<br>Esc 结束 copy mode<br>C-a ] -&gt; paste，把刚刚在 copy mode 选定的内容贴上</p>
 
             </div>
             <hr/>
@@ -529,7 +488,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/">https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/</a>
+                    <a href="https://liuhuaqiang.top/2020/11/17/screen-de-shi-yong/">https://liuhuaqiang.top/2020/11/17/screen-de-shi-yong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,12 +526,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
-                                <a href="/tags/算法题/">
-                                    <span class="chip bg-color">算法题</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -740,55 +695,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/07/kuai-su-mi/">
+                <a href="/2020/11/17/screen-de-shi-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="快速幂">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Screen的使用">
                         
-                        <span class="card-title">快速幂</span>
+                        <span class="card-title">Screen的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ll quick_pow(ll a, ll b, ll mod) {
-    ll ans = 1;
-    while (b)
-    {
-        if (b &amp; 1) ans = (ans*a) % mod;
-     
+                            1、screen**新建一个会话screen -S name
+*如果你在当前会话中，想要杀死这个会话: *exit
+*如果你不在会话中想要杀死这个会话: *screen -X -S name quit
+如果你在当前会话中想要退出，不杀死这个
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -802,39 +749,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/07/ou-la-han-shu/">
+                <a href="/2020/11/15/python-xie-cheng-yi-bu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="欧拉函数">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="python协程异步">
                         
-                        <span class="card-title">欧拉函数</span>
+                        <span class="card-title">python协程异步</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            欧拉函数#include &lt;bits/stdc++.h>
-using namespace std;
-int cnt = 0;
-int vis[100000];
-int prim[100000];
-int n = 100;
-int ma
+                            协程博客
+协程教程视频
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
@@ -842,12 +781,12 @@ int ma
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/协程/">
+                        <span class="chip bg-color">协程</span>
                     </a>
                     
                 </div>
