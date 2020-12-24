@@ -417,16 +417,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/技术/">
+                                <span class="chip bg-color">技术</span>
+                            </a>
+                        
                             <a href="/tags/linux/">
                                 <span class="chip bg-color">linux</span>
                             </a>
                         
                             <a href="/tags/docker/">
                                 <span class="chip bg-color">docker</span>
-                            </a>
-                        
-                            <a href="/tags/技术/">
-                                <span class="chip bg-color">技术</span>
                             </a>
                         
                     </div>
@@ -836,6 +836,60 @@ ee9cc3a95dda        none                null                local</code></pre>
 <p>下面通过 ping 来证明 test1 容器和 test2 容器建立了互联关系。</p>
 <p>如果 test1、test2 容器内中无 ping 命令，则在容器内执行以下命令安装 ping（即学即用：可以在一个容器里安装好，提交容器到镜像，在以新的镜像重新运行以上俩个容器）。</p>
 <h2 id="6-网络通信"><a href="#6-网络通信" class="headerlink" title="6. 网络通信"></a>6. 网络通信</h2><pre class=" language-bash"><code class="language-bash">docker network connect x1 x2</code></pre>
+<h2 id="解决ubuntu中文问题"><a href="#解决ubuntu中文问题" class="headerlink" title="解决ubuntu中文问题"></a>解决ubuntu中文问题</h2><p><a href="https://blog.csdn.net/yiwanxingchena/article/details/83900284" target="_blank" rel="noopener">https://blog.csdn.net/yiwanxingchena/article/details/83900284</a></p>
+<pre class=" language-bash"><code class="language-bash">方法一：
+
+     <span class="token punctuation">(</span>0<span class="token punctuation">)</span>.查看容器语言环境
+
+         $ locale
+
+         LANG<span class="token operator">=</span>
+         LANGUAGE<span class="token operator">=</span>
+         LC_CTYPE<span class="token operator">=</span><span class="token string">"POSIX"</span>
+
+         <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+
+     <span class="token punctuation">(</span>1<span class="token punctuation">)</span>.查看容器支持的语言
+
+         $ locale -a
+
+          C
+          C.UTF-8
+          POSIX
+
+     <span class="token punctuation">(</span>2<span class="token punctuation">)</span>.修改 /etc/profile
+
+         $ <span class="token function">vi</span> /etc/profile   
+
+         在最后添加 <span class="token function">export</span>  LANG<span class="token operator">=</span>C.UTF-8
+
+     <span class="token punctuation">(</span>3<span class="token punctuation">)</span>.重新加载环境变量
+
+         $ <span class="token function">source</span> /etc/profile
+
+     <span class="token punctuation">(</span>4<span class="token punctuation">)</span>.再次查看
+
+         $ locale
+
+         LANG<span class="token operator">=</span>C.UTF-8
+         LANGUAGE<span class="token operator">=</span>
+         LC_CTYPE<span class="token operator">=</span><span class="token string">"C.UTF-8"</span>
+
+         <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+
+ 方法二：
+
+      在Dockerfile中添加 ENV LANG C.UTF-8 重新制作镜像</code></pre>
+<h2 id="运行后-加配置"><a href="#运行后-加配置" class="headerlink" title="运行后,加配置"></a>运行后,加配置</h2><p><a href="https://www.cnblogs.com/zhuochong/p/10070516.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhuochong/p/10070516.html</a></p>
+<p><strong>1、Docker 命令修改</strong></p>
+<pre class=" language-bash"><code class="language-bash">docker container update --restart<span class="token operator">=</span>always 容器名字</code></pre>
+<p><strong>2、直接改配置文件</strong></p>
+<p>首先停止容器，不然无法修改配置文件</p>
+<p>配置文件路径为：<code>/var/lib/docker/containers/容器ID</code></p>
+<p>在该目录下找到一个文件 <code>hostconfig.json</code> ，找到该文件中关键字 <code>RestartPolicy</code></p>
+<p>修改前配置：<code>&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;no&quot;,&quot;MaximumRetryCount&quot;:0}</code></p>
+<p>修改后配置：<code>&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;always&quot;,&quot;MaximumRetryCount&quot;:0}</code></p>
+<p>最后启动容器。</p>
 
             </div>
             <hr>
@@ -899,16 +953,16 @@ ee9cc3a95dda        none                null                local</code></pre>
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/技术/">
+                                    <span class="chip bg-color">技术</span>
+                                </a>
+                            
                                 <a href="/tags/linux/">
                                     <span class="chip bg-color">linux</span>
                                 </a>
                             
                                 <a href="/tags/docker/">
                                     <span class="chip bg-color">docker</span>
-                                </a>
-                            
-                                <a href="/tags/技术/">
-                                    <span class="chip bg-color">技术</span>
                                 </a>
                             
                         </div>
@@ -1114,16 +1168,16 @@ ee9cc3a95dda        none                null                local</code></pre>
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/技术/">
+                        <span class="chip bg-color">技术</span>
+                    </a>
+                    
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
                     <a href="/tags/docker/">
                         <span class="chip bg-color">docker</span>
-                    </a>
-                    
-                    <a href="/tags/技术/">
-                        <span class="chip bg-color">技术</span>
                     </a>
                     
                 </div>
