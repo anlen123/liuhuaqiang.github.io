@@ -581,7 +581,29 @@ git config --global users.email &quot;xxxxx&quot;</code></pre><h3 id="用-git-co
 
 <span class="token comment" spellcheck="true"># 下载分支</span>
 <span class="token function">git</span> clone -b 分支名 仓库地址</code></pre>
-<h2 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> reset --head <span class="token function">id</span> </code></pre>
+<h2 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h2><pre class=" language-bash"><code class="language-bash">直接回滚
+<span class="token function">git</span> reset --head <span class="token function">id</span> 
+
+
+对没有add的文件取消修改
+<span class="token function">git</span> checkout filename 
+<span class="token function">git</span> checkout <span class="token keyword">.</span>
+
+
+对已经add但没有commit的文件进行取消修改<span class="token punctuation">(</span>移除<span class="token punctuation">)</span>暂存区
+<span class="token function">git</span> reset HEAD filename 
+
+
+对已经commit 的文件取消修改
+<span class="token function">git</span> reset HEAD filename 
+<span class="token function">git</span> checkout filename 
+
+
+</code></pre>
+<h3 id="git-revert-和-git-reset的区别"><a href="#git-revert-和-git-reset的区别" class="headerlink" title="git revert 和 git reset的区别"></a>git revert 和 git reset的区别</h3><ul>
+<li>git revert是用一次新的commit来回滚之前的commit，此次提交之前的commit都会被保留；</li>
+<li>git reset是回到某次提交，提交及之前的commit都会被保留，但是此commit id之后的修改都会被删除</li>
+</ul>
 <h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><p>常用git stash命令：</p>
 <p>（1）<strong>git stash</strong> save “save message” : 执行存储时，添加备注，方便查找，只有git stash 也要可以的，但查找时不方便识别。</p>
 <p>（2）<strong>git stash list</strong> ：查看stash了哪些存储</p>
