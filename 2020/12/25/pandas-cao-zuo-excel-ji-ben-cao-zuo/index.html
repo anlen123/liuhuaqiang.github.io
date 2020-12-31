@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="50.pow(x,n), 未闻丶死讯的博客">
+    <meta name="keywords" content="pandas操作excel基本操作, 未闻丶死讯的博客">
     <meta name="description" content="菜鸡博客，大佬勿喷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>50.pow(x,n) | 未闻丶死讯的博客</title>
+    <title>pandas操作excel基本操作 | 未闻丶死讯的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">50.pow(x,n)</h1>
+                    <h1 class="description center-align post-title">pandas操作excel基本操作</h1>
                 </div>
             </div>
         </div>
@@ -417,31 +417,22 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
-                            <a href="/tags/面试题/">
-                                <span class="chip bg-color">面试题</span>
+                            <a href="/tags/技巧/">
+                                <span class="chip bg-color">技巧</span>
                             </a>
                         
-                            <a href="/tags/算法题/">
-                                <span class="chip bg-color">算法题</span>
+                            <a href="/tags/pandas/">
+                                <span class="chip bg-color">pandas</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/算法/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -450,7 +441,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-11
+                    2020-12-25
                 </div>
                 
 
@@ -466,83 +457,97 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="50-Pow-x-n"><a href="#50-Pow-x-n" class="headerlink" title="50. Pow(x, n)"></a><a href="https://leetcode-cn.com/problems/powx-n/" target="_blank" rel="noopener">50. Pow(x, n)</a></h4><p>难度中等333</p>
-<p>实现 <a href="https://www.cplusplus.com/reference/valarray/pow/" target="_blank" rel="noopener">pow(<em>x</em>, <em>n</em>)</a> ，即计算 x 的 n 次幂函数。</p>
-<p><strong>示例 1:</strong></p>
-<pre class=" language-bash"><code class="language-bash">输入: 2.00000, 10
-输出: 1024.00000</code></pre>
-<p><strong>示例 2:</strong></p>
-<pre class=" language-bash"><code class="language-bash">输入: 2.10000, 3
-输出: 9.26100</code></pre>
-<p><strong>示例 3:</strong></p>
-<pre class=" language-bash"><code class="language-bash">输入: 2.00000, -2
-输出: 0.25000
-解释: 2-2 <span class="token operator">=</span> 1/22 <span class="token operator">=</span> 1/4 <span class="token operator">=</span> 0.25</code></pre>
-<p>思路描述：因为不用考虑大数问题，所以只需要循环地去计算就可以了，但是单纯的循环去算，比如：</p>
-<p>for(int i = 1; i &lt; n; i ++)<br>    x *= x;<br>是会超时的。</p>
-<p>所以我们可以考虑比如我们计算 x^8，就是 x^2 * x^2 * x^2 * x^2，当我们计算出来 x^2 之后就可以只进行三次乘法就可以了，相对于之前的 7 次乘法，时间大大减少了。</p>
-<p>也就是 x^n 可以分解成若干个 x^i 的乘积</p>
-<p>我们这里使用快速幂进行求解。我们看一下 n 的二进制形式一定是若干个 1 和 0 构成</p>
-<p>所以我们可以看出来，每次乘的值都是前一个值的2倍，当 n 对应位为0时跳过</p>
-<p>负数幂和正数幂相同，因为除以一个数就相当于乘这个数的倒数。</p>
-<pre class=" language-c"><code class="language-c">
+                <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> pandas <span class="token keyword">import</span> DataFrame
 
-class Solution <span class="token punctuation">{</span>
-public<span class="token punctuation">:</span>
-    <span class="token keyword">double</span> <span class="token function">myPow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">==</span><span class="token number">0</span> <span class="token operator">||</span> x<span class="token operator">==</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">1.0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">long</span> <span class="token keyword">long</span> num <span class="token operator">=</span>n<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            num<span class="token operator">=</span><span class="token operator">-</span>num<span class="token punctuation">;</span>
-            x<span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span>x<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">double</span> ret <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span> ret<span class="token operator">*</span><span class="token operator">=</span>x<span class="token punctuation">;</span>
-            x<span class="token operator">*</span><span class="token operator">=</span>x<span class="token punctuation">;</span>
-            num<span class="token operator">>>=</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<pre class=" language-c"><code class="language-c">
-ll <span class="token function">quick_pow</span><span class="token punctuation">(</span>ll a<span class="token punctuation">,</span> ll b<span class="token punctuation">,</span> ll mod<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    ll ans <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> ans <span class="token operator">=</span> <span class="token punctuation">(</span>ans<span class="token operator">*</span>a<span class="token punctuation">)</span> <span class="token operator">%</span> mod<span class="token punctuation">;</span>
-        a <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">*</span>a<span class="token punctuation">)</span> <span class="token operator">%</span> mod<span class="token punctuation">;</span>
-        b <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-b是可以为<span class="token keyword">double</span>的<span class="token punctuation">,</span></code></pre>
-<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
-public<span class="token punctuation">:</span>
-    <span class="token keyword">double</span>  <span class="token function">quick_pow</span><span class="token punctuation">(</span><span class="token keyword">double</span> a<span class="token punctuation">,</span> <span class="token keyword">long</span> <span class="token keyword">long</span>  b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">double</span> ans <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> ans <span class="token operator">=</span> <span class="token punctuation">(</span>ans<span class="token operator">*</span>a<span class="token punctuation">)</span> <span class="token punctuation">;</span>
-            a <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token operator">*</span>a<span class="token punctuation">)</span> <span class="token punctuation">;</span>
-            b <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">double</span> <span class="token function">myPow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">==</span><span class="token number">0</span> <span class="token operator">||</span> x<span class="token operator">==</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">1.0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">long</span> <span class="token keyword">long</span> num <span class="token operator">=</span>n<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            num<span class="token operator">=</span><span class="token operator">-</span>num<span class="token punctuation">;</span>
-            x<span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span>x<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token function">quick_pow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+a <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"1"</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">,</span> <span class="token string">"3"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"A"</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"10"</span><span class="token punctuation">,</span> <span class="token string">"20"</span><span class="token punctuation">,</span> <span class="token string">"30"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"B"</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"100"</span><span class="token punctuation">,</span> <span class="token string">"200"</span><span class="token punctuation">,</span> <span class="token string">"300"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"C"</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"A"</span><span class="token punctuation">:</span> <span class="token string">"123"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">:</span> <span class="token string">"321"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token punctuation">.</span>name<span class="token punctuation">:</span> a<span class="token punctuation">,</span> b<span class="token punctuation">.</span>name<span class="token punctuation">:</span> b<span class="token punctuation">,</span> c<span class="token punctuation">.</span>name<span class="token punctuation">:</span> c<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 这种是a.name当头,index是索引</span>
+<span class="token comment" spellcheck="true"># print(x)</span>
+<span class="token triple-quoted-string string">"""
+     A    B    C
+a    1   10  NaN
+b    2   20  100
+c    3   30  200
+d  NaN  NaN  300
+"""</span>
+y <span class="token operator">=</span> DataFrame<span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 这种情况是index当头</span>
+<span class="token comment" spellcheck="true"># print(y)</span>
+<span class="token triple-quoted-string string">"""
+     a    b    c    d
+A    1    2    3  NaN
+B   10   20   30  NaN
+C  NaN  100  200  300
+"""</span>
+
+z <span class="token operator">=</span> DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token punctuation">.</span>name<span class="token punctuation">:</span> a<span class="token punctuation">,</span> b<span class="token punctuation">.</span>name<span class="token punctuation">:</span> b<span class="token punctuation">,</span> c<span class="token punctuation">.</span>name<span class="token punctuation">:</span> c<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># print(z)</span>
+<span class="token triple-quoted-string string">"""
+     A    B    C
+a    1   10  NaN
+b    2   20  100
+c    3   30  200
+d  NaN  NaN  300
+"""</span>
+
+<span class="token comment" spellcheck="true"># 修改头为 B列的值,,并且,B列的值为"100"(上面生成的是str) ,第二个括号里面的是条件(不是二维数组的列)</span>
+<span class="token comment" spellcheck="true"># z['B'][z['B'] == "10"] = 1000</span>
+<span class="token comment" spellcheck="true"># 修改索引为aa,头为AA的值为10</span>
+<span class="token comment" spellcheck="true"># z.loc['aa', "AA"] = 10</span>
+<span class="token comment" spellcheck="true"># 修改 索引为aa的全部值为100</span>
+<span class="token comment" spellcheck="true"># z.loc['aa'] = "1000"</span>
+
+
+<span class="token comment" spellcheck="true"># print(z.shape)  # (4,2 )</span>
+<span class="token comment" spellcheck="true"># print(z.columns)  # Index(['A', 'B'], dtype='object')</span>
+
+
+<span class="token comment" spellcheck="true"># 三种方法修改index的名字</span>
+<span class="token comment" spellcheck="true"># inplace是不是在本身上面改,也可以</span>
+<span class="token comment" spellcheck="true"># z = z.rename(index={"a": "aa"})</span>
+<span class="token comment" spellcheck="true"># z.rename(index={"a": "aa"}, inplace=True)</span>
+<span class="token comment" spellcheck="true"># z.rename({'a': 'aa'}, axis='index', inplace=True)</span>
+
+
+<span class="token comment" spellcheck="true"># 修改头名字</span>
+<span class="token comment" spellcheck="true"># z.rename({"A": "AA", "B": "BB"}, axis="columns", inplace=True)</span>
+
+
+<span class="token comment" spellcheck="true"># 添加列</span>
+<span class="token comment" spellcheck="true"># z['dd'] = b</span>
+<span class="token comment" spellcheck="true"># xx = pd.concat([x, z], axis=0).reset_index(drop=True)</span>
+<span class="token comment" spellcheck="true"># z.insert(2, column="dd", value=np.arange(len(z)))</span>
+
+
+<span class="token comment" spellcheck="true"># 添加行</span>
+<span class="token comment" spellcheck="true"># z = z.append(pd.Series({"A": "123", "B": "321"}), ignore_index=True)</span>
+<span class="token comment" spellcheck="true"># z = z.append({"A": "123", "B": "321"}, ignore_index=True)</span>
+<span class="token comment" spellcheck="true"># 这样是索引当了头</span>
+<span class="token comment" spellcheck="true"># z = z.append(a, ignore_index=True)</span>
+<span class="token comment" spellcheck="true">#  添加e索引,数据为1,2,3</span>
+<span class="token comment" spellcheck="true"># z.loc['e'] = ["1", "2", "3"]</span>
+<span class="token comment" spellcheck="true"># z.loc[len(z)] = ["3", "2", "1"]</span>
+<span class="token comment" spellcheck="true"># z.loc[z.shape[0]] = ["3", "2", "1"]</span>
+<span class="token comment" spellcheck="true"># xx = x.append(z, ignore_index=True).reset_index(drop=True)</span>
+<span class="token comment" spellcheck="true"># 拼接</span>
+<span class="token comment" spellcheck="true"># xx = pd.concat([x,z],axis=0).reset_index(drop=True)</span>
+<span class="token comment" spellcheck="true"># 在2行的前面插入d</span>
+<span class="token comment" spellcheck="true"># z.iloc[2] = d</span>
+
+
+<span class="token comment" spellcheck="true"># 删除行</span>
+<span class="token comment" spellcheck="true"># z.drop('a', axis=0, inplace=True)</span>
+<span class="token comment" spellcheck="true"># z.drop(['a', 'b'], axis=0, inplace=True)</span>
+
+
+<span class="token comment" spellcheck="true"># 删除列</span>
+<span class="token comment" spellcheck="true"># z.drop('A', axis=1, inplace=True)</span>
+<span class="token comment" spellcheck="true"># z.drop(['A','B'], axis=1, inplace=True)</span></code></pre>
 
             </div>
             <hr/>
@@ -568,7 +573,7 @@ public<span class="token punctuation">:</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2020/05/11/50-pow-x-n/">https://liuhuaqiang.top/2020/05/11/50-pow-x-n/</a>
+                    <a href="https://liuhuaqiang.top/2020/12/25/pandas-cao-zuo-excel-ji-ben-cao-zuo/">https://liuhuaqiang.top/2020/12/25/pandas-cao-zuo-excel-ji-ben-cao-zuo/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -606,16 +611,16 @@ public<span class="token punctuation">:</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
                                 </a>
                             
-                                <a href="/tags/面试题/">
-                                    <span class="chip bg-color">面试题</span>
+                                <a href="/tags/技巧/">
+                                    <span class="chip bg-color">技巧</span>
                                 </a>
                             
-                                <a href="/tags/算法题/">
-                                    <span class="chip bg-color">算法题</span>
+                                <a href="/tags/pandas/">
+                                    <span class="chip bg-color">pandas</span>
                                 </a>
                             
                         </div>
@@ -783,56 +788,56 @@ public<span class="token punctuation">:</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/15/560-he-wei-k-de-zi-shu-zu/">
+                <a href="/2020/12/25/pandas-cao-zuo-excel-ji-ben-cao-zuo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="560.和为K的子数组">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="pandas操作excel基本操作">
                         
-                        <span class="card-title">560.和为K的子数组</span>
+                        <span class="card-title">pandas操作excel基本操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            560. 和为K的子数组给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。
-示例 1 :
-输入:nums = [1,1,1], k = 2输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。说明 :
+                            import pandas as pd
+import numpy as np
+from pandas import DataFrame
+
+a = pd.Series(["1", "2", "3"], index=["a", "b", "c"
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-25
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/技巧/">
+                        <span class="chip bg-color">技巧</span>
                     </a>
                     
-                    <a href="/tags/前缀和/">
-                        <span class="chip bg-color">前缀和</span>
+                    <a href="/tags/pandas/">
+                        <span class="chip bg-color">pandas</span>
                     </a>
                     
                 </div>
@@ -846,35 +851,31 @@ public<span class="token punctuation">:</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/10/236.er-cha-shu-de-zui-jin-gong-gong-zu-xian/">
+                <a href="/2020/12/24/docker-jiao-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="236. 二叉树的最近公共祖先">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="docker教程">
                         
-                        <span class="card-title">236. 二叉树的最近公共祖先</span>
+                        <span class="card-title">docker教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            236. 二叉树的最近公共祖先难度中等504
-给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
-百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x
+                            docker教程1. Docker(一)：Docker安装与底层原理
+镜像(image)：Docker镜像就相当于是一个文件系统，通俗来说就是为容器用来创建容器的
+容器(Container)：Docker 利用容器 (Container) 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-24
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
@@ -882,12 +883,16 @@ public<span class="token punctuation">:</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/技术/">
+                        <span class="chip bg-color">技术</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
