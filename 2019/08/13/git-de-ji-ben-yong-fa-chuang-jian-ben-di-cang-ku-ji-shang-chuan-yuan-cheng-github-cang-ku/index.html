@@ -636,6 +636,13 @@ git diff --cached  sha1 # 比较的是对象区和暂存区</code></pre>
 git unset head filename # 可以使用 git unset HEAD filename 来把暂存区放到杠工作区
 
 git checkout -- filename # 再使用撤销命令来撤销</code></pre>
+<h2 id="git-pull-和-git-fetch"><a href="#git-pull-和-git-fetch" class="headerlink" title="git pull 和 git fetch"></a>git pull 和 git fetch</h2><pre class=" language-shell"><code class="language-shell">git pull = git fetch +  git merge 
+
+git pull: 从远端拉代码到本地分支并进行合并
+
+git fetch : 从远端拉代码到origin/master 或者origin/xxxxxx 其他的分支，也就是本地联系远程的分支，是不可写的
+
+然后再用git merge origin/master 来进行合并操作</code></pre>
 
             </div>
             <hr/>

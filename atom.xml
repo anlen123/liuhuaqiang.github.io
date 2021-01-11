@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liuhuaqiang.top/"/>
-  <updated>2020-12-25T01:44:59.088Z</updated>
+  <updated>2021-01-11T03:47:42.976Z</updated>
   <id>https://liuhuaqiang.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx</title>
+    <link href="https://liuhuaqiang.top/2021/01/11/nginx/"/>
+    <id>https://liuhuaqiang.top/2021/01/11/nginx/</id>
+    <published>2021-01-11T03:47:10.000Z</published>
+    <updated>2021-01-11T03:47:42.976Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p><img src="/2021/01/11/nginx/image-20210111102656730.png" alt="image-20210111102656730"></p><p><img src="/2021/01/11/nginx/image-20210111102801707.png" alt="image-20210111102801707"></p><p>如果路径中带有edu就访问8001</p><p>如果路径中带有vod就访问8002</p><h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p><img src="/2021/01/11/nginx/image-20210111102849998.png" alt="image-20210111102849998"></p><p>默认轮询算法</p><p><img src="/2021/01/11/nginx/image-20210111102930328.png" alt="image-20210111102930328"></p><p><img src="/2021/01/11/nginx/image-20210111102941136.png" alt="image-20210111102941136"></p><h2 id="动静结合"><a href="#动静结合" class="headerlink" title="动静结合"></a>动静结合</h2><p><img src="/2021/01/11/nginx/image-20210111103000437.png" alt="image-20210111103000437"></p><h2 id="docker-实战"><a href="#docker-实战" class="headerlink" title="docker 实战"></a>docker 实战</h2><ol><li>首先,pull    nginx镜像</li></ol><pre class=" language-bash"><code class="language-bash">docker pull nginx:latest</code></pre><ol start="2"><li>进入docker 并且安装vim </li></ol><pre class=" language-shell"><code class="language-shell">首先运行一次,,确保没问题,再把defatul.conf 复制出来docker cp nginx:/etc/nginx/conf.d/defautl.conf .进入容器docker exec -it nginx /bin/bashcd /etc/apt cat > sources.list <<EOF# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-freedeb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-freedeb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-freedeb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-freeEOFapt-get update apt-get install vimexit然后退出做镜像docker commit nginx nginx:v1.0</code></pre><ol start="3"><li>自定义docker网络</li></ol><pre class=" language-shell"><code class="language-shell">docker network create --driver=bridge --subnet=192.168.0.0/16 --gateway=192.168.1.0 mynet# 查看docker 所有网络docker network ls # 查看 docker内网情况docker network inspect mynet </code></pre><ol start="4"><li>运行nginx</li></ol><pre class=" language-shell"><code class="language-shell">docker run -it --name nginx1 -v /root/nginx/nginx1/default.conf:/etc/nginx/conf.d/default.conf -p 9001:80 --net mynet nginx</code></pre><ol start="5"><li>修改配置文件</li></ol><pre class=" language-shell"><code class="language-shell"># 这是docker 网络        "ConfigOnly": false,        "Containers": {            "b842ce12f9f8d77fffcf827314ae6e7e2485778819f32ec8f6bb042b6eba4f32": {                "Name": "tomcat1",                "EndpointID": "9a7455e796a3c46ce7f902acf3e935a85fc61d9dc64f6d4529f392baffe3c2dc",                "MacAddress": "02:42:c0:a8:00:01",                "IPv4Address": "192.168.0.1/16",                "IPv6Address": ""            },            "fb8b92e75d287db27b7c6ef150ce05c8a4a68beba8dfa78ae13cdfcb81c27f21": {                "Name": "nginx1",                "EndpointID": "67548a0cfbab7d5d18891b7188cbcb29835f9394c2ec783ad18113b0276e93b1",                "MacAddress": "02:42:c0:a8:00:02",                "IPv4Address": "192.168.0.2/16",                "IPv6Address": ""            }        },        "Options": {},        "Labels": {}    }1 server {2     listen       80;3     server_name  192.168.0.2;   # nginx 的网络45     location / {6         proxy_pass http://192.168.0.1:8080;   # docker网络中,tomcat 的地址7     }8 }</code></pre><ol start="6"><li>测试</li></ol><p><img src="/2021/01/11/nginx/image-20210111114514928.png" alt="image-20210111114514928"></p><p><img src="/2021/01/11/nginx/image-20210111114519104.png" alt="image-20210111114519104">.</p><p>都能访问,完成</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;nginx&quot;&gt;&lt;a href=&quot;#nginx&quot; class=&quot;headerlink&quot; title=&quot;nginx&quot;&gt;&lt;/a&gt;nginx&lt;/h1&gt;&lt;h2 id=&quot;反向代理&quot;&gt;&lt;a href=&quot;#反向代理&quot; class=&quot;headerlink&quot; title=&quot;反向代理&quot;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="技术" scheme="https://liuhuaqiang.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
+    
+      <category term="docker" scheme="https://liuhuaqiang.top/tags/docker/"/>
+    
+      <category term="nginx" scheme="https://liuhuaqiang.top/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>pandas操作excel基本操作</title>
@@ -528,32 +558,6 @@
     
     
       <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>491.递增子序列</title>
-    <link href="https://liuhuaqiang.top/2020/08/25/491-di-zeng-zi-xu-lie/"/>
-    <id>https://liuhuaqiang.top/2020/08/25/491-di-zeng-zi-xu-lie/</id>
-    <published>2020-08-25T08:25:29.000Z</published>
-    <updated>2020-10-22T10:18:52.647Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="491-递增子序列"><a href="#491-递增子序列" class="headerlink" title="491. 递增子序列"></a><a href="https://leetcode-cn.com/problems/increasing-subsequences/" target="_blank" rel="noopener">491. 递增子序列</a></h4><p>题目分析<br>定义全局变量 List&lt;List<integer>&gt; res 保存结果；<br>定义 dfs(int[] nums, int idx, List<integer> curList) 进行搜索；<br>参数 int idx 表示当前搜索到的数组下标，初始化为 -1，每次在 [idx + 1, nums.length - 1] 范围内遍历搜索递增序列的下一个值。<br>参数 List<integer> curList 表示当前的递增序列，只要长度大于 1，就拷贝一份存入结果列表 res 中。<br>每次在 [idx + 1, nums.length - 1] 范围内遍历搜索递增序列的下一个值时，借助 set 进行去重，如果当前的值已经在 set 中了，则终止此路径继续搜索。</integer></integer></integer></p><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 定义全局变量保存结果</span>    List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> <span class="token function">findSubsequences</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// idx 初始化为 -1，开始 dfs 搜索。</span>        <span class="token function">dfs</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">return</span> res<span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> idx<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> curList<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// 只要当前的递增序列长度大于 1，就加入到结果 res 中，然后继续搜索递增序列的下一个值。</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>curList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            res<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>curList<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">// 在 [idx + 1, nums.length - 1] 范围内遍历搜索递增序列的下一个值。</span>        <span class="token comment" spellcheck="true">// 借助 set 对 [idx + 1, nums.length - 1] 范围内的数去重。</span>        Set<span class="token operator">&lt;</span>Integer<span class="token operator">></span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> idx <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            <span class="token comment" spellcheck="true">// 1. 如果 set 中已经有与 nums[i] 相同的值了，说明加上 nums[i] 后的所有可能的递增序列之前已经被搜过一遍了，因此停止继续搜索。</span>            <span class="token keyword">if</span> <span class="token punctuation">(</span>set<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                <span class="token keyword">continue</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>            set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// 2. 如果 nums[i] >= nums[idx] 的话，说明出现了新的递增序列，因此继续 dfs 搜索（因为 curList 在这里是复用的，因此别忘了 remove 哦）</span>            <span class="token keyword">if</span> <span class="token punctuation">(</span>idx <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> nums<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                curList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token function">dfs</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> curList<span class="token punctuation">)</span><span class="token punctuation">;</span>                curList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>curList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre><p>为什么要用set去重????? 看下图</p><p>![1598320035-RHLJzE-491. 递增子序列1](491-递增子序列/1598320035-RHLJzE-491. 递增子序列1.jpg)</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;491-递增子序列&quot;&gt;&lt;a href=&quot;#491-递增子序列&quot; class=&quot;headerlink&quot; title=&quot;491. 递增子序列&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/increasing-subse
-      
-    
-    </summary>
-    
-    
-    
-      <category term="算法" scheme="https://liuhuaqiang.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="leetcode" scheme="https://liuhuaqiang.top/tags/leetcode/"/>
     
   </entry>
   
