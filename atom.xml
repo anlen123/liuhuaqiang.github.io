@@ -84,9 +84,9 @@
     
     
     
-      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
-    
       <category term="技术" scheme="https://liuhuaqiang.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
     
       <category term="docker" scheme="https://liuhuaqiang.top/tags/docker/"/>
     
@@ -262,16 +262,16 @@
     <link href="https://liuhuaqiang.top/2020/11/15/python-xie-cheng-yi-bu/"/>
     <id>https://liuhuaqiang.top/2020/11/15/python-xie-cheng-yi-bu/</id>
     <published>2020-11-15T14:02:45.000Z</published>
-    <updated>2020-12-24T02:59:18.395Z</updated>
+    <updated>2021-01-14T06:26:41.772Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="python协程异步/91">协程博客</a></p><p><a href="https://www.bilibili.com/video/BV1Ke411W71L" target="_blank" rel="noopener">协程教程视频</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://pythonav.com/wiki/detail/6/91/" target="_blank" rel="noopener">协程博客</a></p><p><a href="https://docs.python.org/zh-cn/3.7/library/asyncio.html" target="_blank" rel="noopener">官方携程教程</a></p><p><a href="https://www.bilibili.com/video/BV1Ke411W71L" target="_blank" rel="noopener">协程教程视频</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;python协程异步/91&quot;&gt;协程博客&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1Ke411W71L&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;协程教程视频&lt;/a&gt;&lt;/
+        &lt;p&gt;&lt;a href=&quot;https://pythonav.com/wiki/detail/6/91/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;协程博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.python.org/zh-cn/3.
       
     
     </summary>
@@ -360,9 +360,9 @@
     
     
     
-      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
-    
       <category term="技术" scheme="https://liuhuaqiang.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
     
       <category term="mysql" scheme="https://liuhuaqiang.top/tags/mysql/"/>
     
