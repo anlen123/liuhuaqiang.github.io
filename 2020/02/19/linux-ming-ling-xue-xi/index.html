@@ -571,7 +571,7 @@ netstat -an|head -5
 <pre class=" language-bash"><code class="language-bash"><span class="token function">screen</span> -ls</code></pre>
 <p>进入一个会话</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">screen</span> -rx xxx</code></pre>
-<h1 id="端口开放和关闭"><a href="#端口开放和关闭" class="headerlink" title="端口开放和关闭"></a>端口开放和关闭</h1><h2 id="开端口"><a href="#开端口" class="headerlink" title="开端口"></a>开端口</h2><pre class=" language-bash"><code class="language-bash">iptables -A INPUT -ptcp --dport  8099 -j ACCEPT
+<h1 id="端口开放和关闭"><a href="#端口开放和关闭" class="headerlink" title="端口开放和关闭"></a><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">端口开放和关闭</a></h1><h2 id="开端口"><a href="#开端口" class="headerlink" title="开端口"></a>开端口</h2><pre class=" language-bash"><code class="language-bash">iptables -A INPUT -ptcp --dport  8099 -j ACCEPT
 </code></pre>
 <h2 id="关端口"><a href="#关端口" class="headerlink" title="关端口"></a>关端口</h2><pre class=" language-bash"><code class="language-bash">iptables -A OUTPUT -p tcp --dport 端口号-j DROP</code></pre>
 <h2 id="保存设置"><a href="#保存设置" class="headerlink" title="保存设置"></a>保存设置</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">service</span> iptables save 保存设置</code></pre>
