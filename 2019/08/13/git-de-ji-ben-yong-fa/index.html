@@ -463,25 +463,25 @@
 <h2 id="第一步-注册一个github账号点击"><a href="#第一步-注册一个github账号点击" class="headerlink" title="第一步 , 注册一个github账号点击"></a>第一步 , 注册一个github账号<a href="https://github.com/" target="_blank" rel="noopener">点击</a></h2><p>太简单了，不用我说了。</p>
 <h2 id="第二步，下载git这个软件（系统）下载地址"><a href="#第二步，下载git这个软件（系统）下载地址" class="headerlink" title="第二步，下载git这个软件（系统）下载地址"></a>第二步，下载git这个软件（系统）<a href="https://git-scm.com/" target="_blank" rel="noopener">下载地址</a></h2><p>安装就行，很简单。</p>
 <h2 id="第三步，电脑连接你的ssh密匙"><a href="#第三步，电脑连接你的ssh密匙" class="headerlink" title="第三步，电脑连接你的ssh密匙"></a>第三步，电脑连接你的ssh密匙</h2><h3 id="打开-git-bash-输入"><a href="#打开-git-bash-输入" class="headerlink" title="打开 git bash 输入"></a>打开 git bash 输入</h3><p>生成秘钥：ssh-keygen -t rsa -C “<a href="mailto:xxxxxxx@qq.com" target="_blank" rel="noopener">xxxxxxx@qq.com</a>“ ，直接Enter就行，然后会提示输入密码(可输可不输)<br>说明：命令中的email，就是gitlab中的账号，需要保持一致</p>
-<p>会出现这样就说明产生成功了<br><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/1.png" alt></p>
+<p>会出现这样就说明产生成功了<br><img src="/2019/08/13/git-de-ji-ben-yong-fa/1.png" alt></p>
 <p>然后，去你的电脑用户下，找到.shh 文件夹，里面有id_ras(私钥)和id_ras.pub(公钥)</p>
 <p>用记事本打开id_ras.pub,复制所有，(或者输入)</p>
-<pre><code>cat ~/.ssh/id_rsa.pub</code></pre><p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/4.png" alt></p>
+<pre><code>cat ~/.ssh/id_rsa.pub</code></pre><p><img src="/2019/08/13/git-de-ji-ben-yong-fa/4.png" alt></p>
 <p>打开网站github你的设置你如图</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/2.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/2.png" alt></p>
 <p>添加进去</p>
 <p>🆗，这一步完成了</p>
-<h2 id="第四步，创建本地仓库"><a href="#第四步，创建本地仓库" class="headerlink" title="第四步，创建本地仓库"></a>第四步，创建本地仓库</h2><h3 id="新建一个文件夹，在此文件夹下，右键，有个-git-bash"><a href="#新建一个文件夹，在此文件夹下，右键，有个-git-bash" class="headerlink" title="新建一个文件夹，在此文件夹下，右键，有个 git bash"></a>新建一个文件夹，在此文件夹下，右键，有个 git bash</h3><p>如图<br><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/3.png" alt></p>
+<h2 id="第四步，创建本地仓库"><a href="#第四步，创建本地仓库" class="headerlink" title="第四步，创建本地仓库"></a>第四步，创建本地仓库</h2><h3 id="新建一个文件夹，在此文件夹下，右键，有个-git-bash"><a href="#新建一个文件夹，在此文件夹下，右键，有个-git-bash" class="headerlink" title="新建一个文件夹，在此文件夹下，右键，有个 git bash"></a>新建一个文件夹，在此文件夹下，右键，有个 git bash</h3><p>如图<br><img src="/2019/08/13/git-de-ji-ben-yong-fa/3.png" alt></p>
 <h3 id="首先要配置个人信息，之后再初始化"><a href="#首先要配置个人信息，之后再初始化" class="headerlink" title="首先要配置个人信息，之后再初始化"></a>首先要配置个人信息，之后再初始化</h3><p>直接输入 </p>
 <pre><code>git config --global users.name &quot;xxxxx&quot;
 git config --global users.email &quot;xxxxx&quot;</code></pre><p>用 git config –list 可以查看你的配置</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/5.png" alt></p>
-<h2 id="第五步，初始化本地仓库-就一句话"><a href="#第五步，初始化本地仓库-就一句话" class="headerlink" title="第五步，初始化本地仓库(就一句话)"></a>第五步，初始化本地仓库(就一句话)</h2><pre><code>git init </code></pre><h2 id="第六步-对文件进行操作（增，删，改）"><a href="#第六步-对文件进行操作（增，删，改）" class="headerlink" title="第六步 对文件进行操作（增，删，改）"></a>第六步 对文件进行操作（增，删，改）</h2><h4 id="增，git-add-xxx"><a href="#增，git-add-xxx" class="headerlink" title="增，git add xxx"></a>增，git add xxx</h4><p>我新建了一个test的txt文件<br><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/6.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/5.png" alt></p>
+<h2 id="第五步，初始化本地仓库-就一句话"><a href="#第五步，初始化本地仓库-就一句话" class="headerlink" title="第五步，初始化本地仓库(就一句话)"></a>第五步，初始化本地仓库(就一句话)</h2><pre><code>git init </code></pre><h2 id="第六步-对文件进行操作（增，删，改）"><a href="#第六步-对文件进行操作（增，删，改）" class="headerlink" title="第六步 对文件进行操作（增，删，改）"></a>第六步 对文件进行操作（增，删，改）</h2><h4 id="增，git-add-xxx"><a href="#增，git-add-xxx" class="headerlink" title="增，git add xxx"></a>增，git add xxx</h4><p>我新建了一个test的txt文件<br><img src="/2019/08/13/git-de-ji-ben-yong-fa/6.png" alt></p>
 <p>cd test文件夹</p>
 <p>在 git bash中输入 git add test.txt </p>
 <p>每一步完成后可以查看状态确认一下</p>
 <p>git status</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/7.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/7.png" alt></p>
 <p>绿色的新文件</p>
 <p>现在这个文件在缓存区，</p>
 <p>现在提交到本地仓库</p>
@@ -490,21 +490,21 @@ git config --global users.email &quot;xxxxx&quot;</code></pre><p>用 git config 
 <p>比如第一次提交</p>
 <p>git commit -m “第一次提交”</p>
 <p>==git commit -amned -m “这是comnit重写”==</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/8.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/8.png" alt></p>
 <p>看一下状态 git status</p>
 <p>缓存区没有文件了，就是提交上去了</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/9.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/9.png" alt></p>
 <p>至此，增文件就完成了。</p>
 <h4 id="改"><a href="#改" class="headerlink" title="改"></a>改</h4><p>一样的和增，一样的语法。</p>
 <p>我们进入test.txt加一些字，</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/10.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/10.png" alt></p>
 <p>然后，git add test.txt</p>
 <p>再然后，git commit -m “第二次提交”</p>
 <p>ok 至此，改操作就完成了</p>
 <h4 id="删"><a href="#删" class="headerlink" title="删"></a>删</h4><p>我们删文件，把之前的git add xxx<br>改成 git rm xxx 就行了（注意，本地必须把它删除了才可以操作，用rm -rf 命令或者直接在win窗口中用del删除）</p>
-<p>演示一下<br><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/11.png" alt></p>
+<p>演示一下<br><img src="/2019/08/13/git-de-ji-ben-yong-fa/11.png" alt></p>
 <p>ok 删除操作就完成了</p>
-<h3 id="第七步-在github上新建一个仓库"><a href="#第七步-在github上新建一个仓库" class="headerlink" title="第七步, 在github上新建一个仓库"></a>第七步, 在github上新建一个仓库</h3><p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/12.png" alt></p>
+<h3 id="第七步-在github上新建一个仓库"><a href="#第七步-在github上新建一个仓库" class="headerlink" title="第七步, 在github上新建一个仓库"></a>第七步, 在github上新建一个仓库</h3><p><img src="/2019/08/13/git-de-ji-ben-yong-fa/12.png" alt></p>
 <p>新建了后，在git bash 中输入</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> remote add origin xxxxxxxxxxxx
 <span class="token function">git</span> push -u origin master
@@ -568,18 +568,18 @@ xxxxxxxxx 为你的仓库网站</code></pre>
 <span class="token comment" spellcheck="true"># 修改密码github,gitee,coding密码凭证</span>
 控制面板
 </code></pre>
-<h2 id="查看凭证"><a href="#查看凭证" class="headerlink" title="查看凭证"></a>查看凭证</h2><p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/14.png" alt><br><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/15.png" alt></p>
+<h2 id="查看凭证"><a href="#查看凭证" class="headerlink" title="查看凭证"></a>查看凭证</h2><p><img src="/2019/08/13/git-de-ji-ben-yong-fa/14.png" alt><br><img src="/2019/08/13/git-de-ji-ben-yong-fa/15.png" alt></p>
 <h2 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git<strong>配置</strong></h2><p>查看当前git用户的全局配置</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> config --global --list</code></pre>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/16.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/16.png" alt></p>
 <p>git的系统配置</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> config --system --list</code></pre>
 <p> 添加名字和邮件</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> config --global user.name <span class="token operator">=</span> <span class="token string">"xxxxx"</span>
 <span class="token function">git</span> config --global user.email <span class="token operator">=</span> <span class="token string">"xxxxx"</span></code></pre>
 <p>工作流程</p>
-<p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/17.png" alt></p>
-<h2 id="git的文件状态"><a href="#git的文件状态" class="headerlink" title="git的文件状态"></a>git的文件状态</h2><p><img src="/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/18.png" alt></p>
+<p><img src="/2019/08/13/git-de-ji-ben-yong-fa/17.png" alt></p>
+<h2 id="git的文件状态"><a href="#git的文件状态" class="headerlink" title="git的文件状态"></a>git的文件状态</h2><p><img src="/2019/08/13/git-de-ji-ben-yong-fa/18.png" alt></p>
 <h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>.gitignore文件</p>
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#查看所有分支</span>
 <span class="token function">git</span> branch
@@ -668,7 +668,7 @@ git fetch : 从远端拉代码到origin/master 或者origin/xxxxxx 其他的分�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/">https://liuhuaqiang.top/2019/08/13/git-de-ji-ben-yong-fa-chuang-jian-ben-di-cang-ku-ji-shang-chuan-yuan-cheng-github-cang-ku/</a>
+                    <a href="https://liuhuaqiang.top/2019/08/13/git-de-ji-ben-yong-fa/">https://liuhuaqiang.top/2019/08/13/git-de-ji-ben-yong-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
