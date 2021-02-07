@@ -318,7 +318,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/5.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
 </script>
 
 
@@ -335,6 +335,63 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/05/07/zi-dian-shu/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="字典树">
+                            
+                            <span class="card-title">字典树</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                字典树#include&lt;bits/stdc++.h>
+using namespace std;
+int cnt = 0;
+struct node{
+    int num;
+    int data[27];
+    void ini
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/算法/" class="post-category">
+                                    算法
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/leetcode/">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
+                        <a href="/tags/算法题/">
+                            <span class="chip bg-color">算法题</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -408,59 +465,6 @@
                                 1155. 掷骰子的N种方法这里有 d 个一样的骰子，每个骰子上都有 f 个面，分别标号为 1, 2, …, f。
 我们约定：掷骰子的得到总点数为各骰子面朝上的数字的总和。
 如果需要掷出的总点数为 target，请你计算出有多少种不同的组合
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/leetcode/">
-                            <span class="chip bg-color">leetcode</span>
-                        </a>
-                        
-                        <a href="/tags/算法题/">
-                            <span class="chip bg-color">算法题</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/05/07/1353.zui-duo-ke-yi-can-jia-de-hui-yi-shu-mu/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="1353. 最多可以参加的会议数目">
-                            
-                            <span class="card-title">1353. 最多可以参加的会议数目</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1353. 最多可以参加的会议数目给你一个数组 events，其中 events[i] = [startDayi, endDayi] ，表示会议 i 开始于 startDayi ，结束于 endDayi 。
-
-你可以在满足 startDay
                             
                         </div>
                         <div class="publish-info">
@@ -603,25 +607,22 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/05/07/1383.zui-da-de-tuan-dui-biao-xian-zhi/">
+                    <a href="/2020/05/07/1353.zui-duo-ke-yi-can-jia-de-hui-yi-shu-mu/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="1383. 最大的团队表现值">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="1353. 最多可以参加的会议数目">
                             
-                            <span class="card-title">1383. 最大的团队表现值</span>
+                            <span class="card-title">1353. 最多可以参加的会议数目</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1383. 最大的团队表现值示例 1：
+                                1353. 最多可以参加的会议数目给你一个数组 events，其中 events[i] = [startDayi, endDayi] ，表示会议 i 开始于 startDayi ，结束于 endDayi 。
 
-输入：n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2
-输出：60
-解释：
-我们选择工程师 2（speed=10 且 
+你可以在满足 startDay
                             
                         </div>
                         <div class="publish-info">
@@ -818,27 +819,25 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/05/07/365.shui-hu-wen-ti/">
+                    <a href="/2020/05/07/1383.zui-da-de-tuan-dui-biao-xian-zhi/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="365. 水壶问题">
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="1383. 最大的团队表现值">
                             
-                            <span class="card-title">365. 水壶问题</span>
+                            <span class="card-title">1383. 最大的团队表现值</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                365. 水壶问题有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
+                                1383. 最大的团队表现值示例 1：
 
-如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
-
-你允许：
-
-装满任意一个水壶
-清空任
+输入：n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2
+输出：60
+解释：
+我们选择工程师 2（speed=10 且 
                             
                         </div>
                         <div class="publish-info">
