@@ -914,6 +914,39 @@ class A{
 
     <span class="token keyword">int</span> <span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
+<h2 id="实战1-标识有注解的就运行"><a href="#实战1-标识有注解的就运行" class="headerlink" title="实战1     (标识有注解的就运行)"></a>实战1     (标识有注解的就运行)</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>value <span class="token operator">=</span> ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>value <span class="token operator">=</span> RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Testinit</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DemoInit</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Testinit</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Testinit</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"233"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> aClass <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.lhq.Main.DemoInit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Method<span class="token punctuation">[</span><span class="token punctuation">]</span> methods <span class="token operator">=</span> aClass<span class="token punctuation">.</span><span class="token function">getMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Method method <span class="token operator">:</span> methods<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">boolean</span> annotationPresent <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>Testinit<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>annotationPresent<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>aClass<span class="token punctuation">.</span><span class="token function">getConstructor</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">,</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre>
 
             </div>
             <hr/>
@@ -1240,12 +1273,12 @@ docker pull nginx:latest
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/技术/">
-                        <span class="chip bg-color">技术</span>
-                    </a>
-                    
                     <a href="/tags/java/">
                         <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/技术/">
+                        <span class="chip bg-color">技术</span>
                     </a>
                     
                     <a href="/tags/docker/">
