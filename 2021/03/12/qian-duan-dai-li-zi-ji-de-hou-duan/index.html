@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="归并排序, 未闻丶死讯的博客">
+    <meta name="keywords" content="前端代理自己的后端, 未闻丶死讯的博客">
     <meta name="description" content="菜鸡博客，大佬勿喷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>归并排序 | 未闻丶死讯的博客</title>
+    <title>前端代理自己的后端 | 未闻丶死讯的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -287,12 +287,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">归并排序</h1>
+                    <h1 class="description center-align post-title">前端代理自己的后端</h1>
                 </div>
             </div>
         </div>
@@ -417,27 +417,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/leetcode/">
-                                <span class="chip bg-color">leetcode</span>
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
-                            <a href="/tags/算法题/">
-                                <span class="chip bg-color">算法题</span>
+                            <a href="/tags/小技巧/">
+                                <span class="chip bg-color">小技巧</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/算法/" class="post-category">
-                                算法
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -446,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-07
+                    2021-03-12
                 </div>
                 
 
@@ -462,48 +453,34 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><a href="https://www.bilibili.com/video/BV1Ax411U7Xx" target="_blank" rel="noopener">视频教程</a></p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//归并排序</span>
-<span class="token comment" spellcheck="true">/*********************/</span>
-<span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> M<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> left_size <span class="token operator">=</span> M<span class="token operator">-</span>L<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right_size <span class="token operator">=</span> R<span class="token operator">-</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> left<span class="token punctuation">[</span>left_size<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right<span class="token punctuation">[</span>right_size<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//产生两个左右数组</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> L<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>M<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        left<span class="token punctuation">[</span>i<span class="token operator">-</span>L<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> M<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>R<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        right<span class="token punctuation">[</span>i<span class="token operator">-</span>M<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>k <span class="token operator">=</span> L<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size <span class="token operator">&amp;&amp;</span> j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//数组比较那个小,就插入</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>right<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span>left_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>left<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>right_size<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        arr<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>right<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+                <h1 id="为什么需要这么做"><a href="#为什么需要这么做" class="headerlink" title="为什么需要这么做?"></a>为什么需要这么做?</h1><p>你在工作中可能是会遇见这样的情况:  前后端分离开发,前端访问的后端地址是你同事的机器, 你修改bug后,在前端测试不了你的写的bug,只能先git push ,你同事再拉下来,重新跑.才能看见,于是,我们使用nginx代理来实现,使用前端来访问自己的后端地址</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
+<li>nginx </li>
+</ol>
+<p><a href="http://nginx.org/" target="_blank" rel="noopener">NginxDownLoad</a></p>
+<ol start="2">
+<li>修改host</li>
+</ol>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ol>
+<li>修改host</li>
+</ol>
+<p>127.0.0.1   ni.web</p>
+<ol start="2">
+<li>修改nginx配置</li>
+</ol>
+<p>核心</p>
+<pre class=" language-config"><code class="language-config">    server {
+        listen       80;
+        server_name  ni.web;  # 监听网站和端口
 
-<span class="token keyword">void</span> <span class="token function">merger_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> L<span class="token punctuation">,</span><span class="token keyword">int</span> R<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//分治归并</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>L<span class="token operator">==</span>R<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> M <span class="token operator">=</span> <span class="token punctuation">(</span>L<span class="token operator">+</span>R<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merger_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">merge</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>L<span class="token punctuation">,</span>M<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>R<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/*******************/</span>
-</code></pre>
+        location / {
+            proxy_pass http://192.168.4.180:3306;    # 根节点走它的 
+        }
+        location /api/ {
+            proxy_pass http://127.0.0.1:8082/;   # /api前缀的走我的端口
+        }
+    }</code></pre>
+<p>然后访问  ni.web就行了</p>
 
             </div>
             <hr/>
@@ -529,7 +506,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/">https://liuhuaqiang.top/2020/05/07/gui-bing-pai-xu/</a>
+                    <a href="https://liuhuaqiang.top/2021/03/12/qian-duan-dai-li-zi-ji-de-hou-duan/">https://liuhuaqiang.top/2021/03/12/qian-duan-dai-li-zi-ji-de-hou-duan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,12 +544,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
-                                <a href="/tags/算法题/">
-                                    <span class="chip bg-color">算法题</span>
+                                <a href="/tags/小技巧/">
+                                    <span class="chip bg-color">小技巧</span>
                                 </a>
                             
                         </div>
@@ -740,56 +717,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/07/kuai-su-pai-xu/">
+                <a href="/2021/03/12/qian-duan-dai-li-zi-ji-de-hou-duan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="快速排序">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="前端代理自己的后端">
                         
-                        <span class="card-title">快速排序</span>
+                        <span class="card-title">前端代理自己的后端</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            快速排序视频教程
-
-#include &lt;bits/stdc++.h>
-using namespace std;
-void quck_sort(int a[],int l, int r){
-    if(l>=r) return ;
- 
+                            为什么需要这么做?你在工作中可能是会遇见这样的情况:  前后端分离开发,前端访问的后端地址是你同事的机器, 你修改bug后,在前端测试不了你的写的bug,只能先git push ,你同事再拉下来,重新跑.才能看见,于是,我们使用nginx代
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-12
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/小技巧/">
+                        <span class="chip bg-color">小技巧</span>
                     </a>
                     
                 </div>
@@ -803,39 +772,35 @@ void quck_sort(int a[],int l, int r){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/07/ou-la-han-shu/">
+                <a href="/2021/03/02/pypi-da-bao-shang-chuan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="欧拉函数">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="pypi打包上传">
                         
-                        <span class="card-title">欧拉函数</span>
+                        <span class="card-title">pypi打包上传</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            欧拉函数#include &lt;bits/stdc++.h>
-using namespace std;
-int cnt = 0;
-int vis[100000];
-int prim[100000];
-int n = 100;
-int ma
+                            
+第三方包用pip安装,上传到哪呢? 
+
+答案是上传到pypi.org里面去
+详细教程: https://blog.konghy.cn/2018/04/29/setup-dot-py/
+1. 首先需要注册账号很简单不用说也知道
+2. 准备工
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            anlen123
                             
                         </span>
                     </div>
@@ -843,12 +808,8 @@ int ma
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/算法题/">
-                        <span class="chip bg-color">算法题</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>

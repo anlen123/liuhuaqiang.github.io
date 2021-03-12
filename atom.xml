@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liuhuaqiang.top/"/>
-  <updated>2021-03-02T01:15:20.806Z</updated>
+  <updated>2021-03-12T03:40:14.350Z</updated>
   <id>https://liuhuaqiang.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端代理自己的后端</title>
+    <link href="https://liuhuaqiang.top/2021/03/12/qian-duan-dai-li-zi-ji-de-hou-duan/"/>
+    <id>https://liuhuaqiang.top/2021/03/12/qian-duan-dai-li-zi-ji-de-hou-duan/</id>
+    <published>2021-03-12T03:32:47.000Z</published>
+    <updated>2021-03-12T03:40:14.350Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="为什么需要这么做"><a href="#为什么需要这么做" class="headerlink" title="为什么需要这么做?"></a>为什么需要这么做?</h1><p>你在工作中可能是会遇见这样的情况:  前后端分离开发,前端访问的后端地址是你同事的机器, 你修改bug后,在前端测试不了你的写的bug,只能先git push ,你同事再拉下来,重新跑.才能看见,于是,我们使用nginx代理来实现,使用前端来访问自己的后端地址</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol><li>nginx </li></ol><p><a href="http://nginx.org/" target="_blank" rel="noopener">NginxDownLoad</a></p><ol start="2"><li>修改host</li></ol><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ol><li>修改host</li></ol><p>127.0.0.1   ni.web</p><ol start="2"><li>修改nginx配置</li></ol><p>核心</p><pre class=" language-config"><code class="language-config">    server {        listen       80;        server_name  ni.web;  # 监听网站和端口        location / {            proxy_pass http://192.168.4.180:3306;    # 根节点走它的         }        location /api/ {            proxy_pass http://127.0.0.1:8082/;   # /api前缀的走我的端口        }    }</code></pre><p>然后访问  ni.web就行了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;为什么需要这么做&quot;&gt;&lt;a href=&quot;#为什么需要这么做&quot; class=&quot;headerlink&quot; title=&quot;为什么需要这么做?&quot;&gt;&lt;/a&gt;为什么需要这么做?&lt;/h1&gt;&lt;p&gt;你在工作中可能是会遇见这样的情况:  前后端分离开发,前端访问的后端地址是你同事的机器,
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java" scheme="https://liuhuaqiang.top/tags/java/"/>
+    
+      <category term="小技巧" scheme="https://liuhuaqiang.top/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>pypi打包上传</title>
@@ -520,37 +546,9 @@
     
     
     
-      <category term="算法" scheme="https://liuhuaqiang.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="面试题" scheme="https://liuhuaqiang.top/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
-  </entry>
-  
-  <entry>
-    <title>ffmpeg</title>
-    <link href="https://liuhuaqiang.top/2020/10/22/ffmpeg/"/>
-    <id>https://liuhuaqiang.top/2020/10/22/ffmpeg/</id>
-    <published>2020-10-22T09:33:10.000Z</published>
-    <updated>2020-12-24T03:00:03.659Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h1><h2 id="按时间切割视频"><a href="#按时间切割视频" class="headerlink" title="按时间切割视频"></a>按时间切割视频</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i in.mp4 -c copy -ss 开始时间 -t 持续时间 out.mp4ps : ffmpeg -i inputfile.mp4 -c copy -ss00:05:00 -t 00:22:00 outfile.mp4</code></pre><h2 id="按顺序帧提取图片出来"><a href="#按顺序帧提取图片出来" class="headerlink" title="按顺序帧提取图片出来"></a>按顺序帧提取图片出来</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i in.mp4 %04d.png 后面有个d </code></pre><h2 id="提取音频"><a href="#提取音频" class="headerlink" title="提取音频"></a>提取音频</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i 1.mp4 -f mp3 1.mp3</code></pre><p>只提取视频文件</p><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i 1.mp4 -vcodec copy -an 2.mp4</code></pre><h2 id="多媒体格式转换"><a href="#多媒体格式转换" class="headerlink" title="多媒体格式转换"></a>多媒体格式转换</h2><pre class=" language-cmd"><code class="language-cmd">ffmpeg -i killer.mp4 -vcodec copy -acodec copy out.flv参数说明：`-i`：被处理的多媒体文件`vcodec`:视频编解码处理方式`acodec`：音频编解码处理方式</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;ffmpeg&quot;&gt;&lt;a href=&quot;#ffmpeg&quot; class=&quot;headerlink&quot; title=&quot;ffmpeg&quot;&gt;&lt;/a&gt;ffmpeg&lt;/h1&gt;&lt;h2 id=&quot;按时间切割视频&quot;&gt;&lt;a href=&quot;#按时间切割视频&quot; class=&quot;headerlink&quot; ti
-      
-    
-    </summary>
-    
-    
-    
-      <category term="技术" scheme="https://liuhuaqiang.top/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="linux" scheme="https://liuhuaqiang.top/tags/linux/"/>
-    
-      <category term="ffmpeg" scheme="https://liuhuaqiang.top/tags/ffmpeg/"/>
+      <category term="算法" scheme="https://liuhuaqiang.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
