@@ -1248,6 +1248,466 @@ sourceBuilder<span class="token punctuation">.</span><span class="token function
 <p><img src="/2020/10/12/elasticsearch-xue-xi/image-20201012152555147.png" alt="image-20201012152555147"></p>
 <p><img src="/2020/10/12/elasticsearch-xue-xi/image-20201012152624054.png" alt="image-20201012152624054"></p>
 <p>OK了</p>
+<p>es基础</p>
+<h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>==——————————————————————————————————————–==</p>
+<p>==————————————————-分割线————————————————————==</p>
+<p>==——————————————————————————————————————–==</p>
+<h1 id="索引篇"><a href="#索引篇" class="headerlink" title="索引篇"></a>索引篇</h1><h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><pre class=" language-shell"><code class="language-shell">PUT test
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "des":{
+        "type": "text"
+      },
+      "name":{
+        "type": "keyword"
+      },
+      "age":{
+        "type": "integer"
+      },
+      "birth":{
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+      },
+      "like":{
+        "properties": {
+          "woman":{
+            "type":"boolean"
+          },
+          "game":{
+            "type":"boolean"
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+<h2 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h2><pre class=" language-shell"><code class="language-shell">GET test/_mapping</code></pre>
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><pre class=" language-shell"><code class="language-shell">DELETE test</code></pre>
+<h2 id="新增索引字段"><a href="#新增索引字段" class="headerlink" title="新增索引字段"></a>新增索引字段</h2><pre class=" language-shell"><code class="language-shell">PUT test/_mapping
+{
+  "properties":{
+    "xxx":{
+      "type":"text"
+    }
+  }
+}</code></pre>
+<h2 id="如何删除索引中某一类型结构的全部数据而不删除类型结构？"><a href="#如何删除索引中某一类型结构的全部数据而不删除类型结构？" class="headerlink" title="如何删除索引中某一类型结构的全部数据而不删除类型结构？"></a>如何删除索引中某一类型结构的全部数据而不删除类型结构？</h2><pre class=" language-shell"><code class="language-shell">POST test/_delete_by_query?pretty
+{
+  "query":{
+    "match_all":{}
+  }
+}</code></pre>
+<h1 id="文档篇"><a href="#文档篇" class="headerlink" title="文档篇"></a>文档篇</h1><h2 id="新增文档"><a href="#新增文档" class="headerlink" title="新增文档"></a>新增文档</h2><pre class=" language-shell"><code class="language-shell">PUT test/_doc/1
+{
+  "name":"吴彦祖",
+  "age":22,
+  "birth": "2000-10-12",
+  "like": {
+    "woman":true,
+    "game":true
+  },
+  "dec":"差点点比刘华强帅了都"
+}</code></pre>
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><pre class=" language-shell"><code class="language-shell">POST test/_doc/1/_update
+{
+  "doc":{
+    "name":"刘德华"
+  }
+}</code></pre>
+<h2 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h2><pre class=" language-shell"><code class="language-shell">DELETE test/_doc/1</code></pre>
+<h1 id="查询篇"><a href="#查询篇" class="headerlink" title="查询篇"></a>查询篇</h1><h2 id="term查询"><a href="#term查询" class="headerlink" title="term查询"></a>term查询</h2><p>精确查询,对查询的词,不进行拆分</p>
+<pre class=" language-shelll"><code class="language-shelll">GET test/_search
+{
+  "query": {
+    "term": {
+      "name": {
+        "value": "吴彦祖"
+      }
+    }
+  }
+}</code></pre>
+<h2 id="terms查询"><a href="#terms查询" class="headerlink" title="terms查询"></a>terms查询</h2><p>可以查询多个条件 (不支持多字段)</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "terms": {
+      "name": [
+        "刘德华",
+        "吴彦祖"
+      ]
+    }
+  }
+}</code></pre>
+<h2 id="match-all查询"><a href="#match-all查询" class="headerlink" title="match_all查询"></a>match_all查询</h2><p>查询所有信息</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}</code></pre>
+<h2 id="match查询"><a href="#match查询" class="headerlink" title="match查询"></a>match查询</h2><p>分词查询,  会按照权值排序 (不支持多个字段)</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "match": {
+      "dec": "华强 帅 点点"
+    }    
+  }
+}
+
+------------------------------------------------------------------------------------
+查询结果
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 2,
+      "relation" : "eq"
+    },
+    "max_score" : 2.4531193,
+    "hits" : [
+      {
+        "_index" : "test",
+        "_type" : "_doc",
+        "_id" : "1",
+        "_score" : 2.4531193,
+        "_source" : {
+          "name" : "吴彦祖",
+          "age" : 22,
+          "birth" : "2000-10-12",
+          "like" : {
+            "woman" : true,
+            "game" : true
+          },
+          "dec" : "差点点比刘华强帅了都"
+        }
+      },
+      {
+        "_index" : "test",
+        "_type" : "_doc",
+        "_id" : "2",
+        "_score" : 0.5469647,
+        "_source" : {
+          "name" : "刘德华",
+          "age" : 40,
+          "birth" : "2001-03-22",
+          "like" : {
+            "woman" : true,
+            "game" : false
+          },
+          "dec" : "和刘华强旗鼓相当的帅"
+        }
+      }
+    ]
+  }
+}</code></pre>
+<h2 id="match-phrase"><a href="#match-phrase" class="headerlink" title="match_phrase"></a>match_phrase</h2><p>只会查询到匹配的内容</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "match_phrase": {
+      "dec": "相当"
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------
+{
+  "took" : 67,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 1.3862942,
+    "hits" : [
+      {
+        "_index" : "test",
+        "_type" : "_doc",
+        "_id" : "2",
+        "_score" : 1.3862942,
+        "_source" : {
+          "name" : "刘德华",
+          "age" : 40,
+          "birth" : "2001-03-22",
+          "like" : {
+            "woman" : true,
+            "game" : false
+          },
+          "dec" : "和刘华强旗鼓相当的帅"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="size和from参数"><a href="#size和from参数" class="headerlink" title="size和from参数"></a>size和from参数</h2><p>分页参数,size是一页的大小,from是当前页的数量,默认是0</p>
+<p>如果不设置的话,查询超过1w条的时候,会显示前1w条,但有时候没必要,只需要看前10条就够了</p>
+<p>在任何查询条件中都可以添加</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 1
+  , "from": 0
+}
+</code></pre>
+<h2 id="bool查询"><a href="#bool查询" class="headerlink" title="bool查询"></a>bool查询</h2><p>条件查询,里面有must,should,not_must,not_should  ( 自己理解含义 ) 影响的是后面的权值排序  </p>
+<p>多个条件组合</p>
+<p>运用非常广泛</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": "刘德华"
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "des": "刘华强"
+          }
+        }
+      ]
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------
+{
+  "took" : 3,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 0.6931471,
+    "hits" : [
+      {
+        "_index" : "test",
+        "_type" : "_doc",
+        "_id" : "2",
+        "_score" : 0.6931471,
+        "_source" : {
+          "name" : "刘德华",
+          "age" : 40,
+          "birth" : "2001-03-22",
+          "like" : {
+            "woman" : true,
+            "game" : false
+          },
+          "dec" : "和刘华强旗鼓相当的帅"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="ranger查询"><a href="#ranger查询" class="headerlink" title="ranger查询"></a>ranger查询</h2><p>比如查询年龄在22到55之间的</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "range": {
+      "age": {
+        "gte": 22,
+        "lte": 50
+      }
+    }
+  }
+}
+
+-------------------------------------------------------------------------------------------------
+gte: >=
+lte: <=
+ge:  >
+lt:  <</code></pre>
+<p>可以和bool连用</p>
+<pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": "刘德华"
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "des": "刘华强"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "age": {
+              "gte": 10,
+              "lte": 50
+            }
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+<h2 id="highlight高亮查询"><a href="#highlight高亮查询" class="headerlink" title="highlight高亮查询"></a>highlight高亮查询</h2><p>查询出的内容和 代码片段包裹</p>
+<pre class=" language-shell"><code class="language-shell">GET article_nested/_search
+{
+  "size": 1,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match_phrase": {
+            "language": "vi"
+          }
+        }
+      ]
+    }
+  },
+  "highlight": {
+    "fields": {
+      "language": {}
+    },
+    "pre_tags": "<p>", # 前缀
+    "post_tags": "</p>"  # 后缀
+  }
+}
+
+--------------------------------------------------------------------
+"highlight" : {
+    "language" : [
+        "<p>vi</p>"
+    ]
+}</code></pre>
+<h1 id="聚合查询篇"><a href="#聚合查询篇" class="headerlink" title="聚合查询篇"></a>聚合查询篇</h1><h2 id="字段分类"><a href="#字段分类" class="headerlink" title="字段分类"></a>字段分类</h2><pre class=" language-shell"><code class="language-shell">GET article_nested/_search
+{
+  "size": 0, 
+  "aggs": {
+    "语种分类":{
+      "terms": { 
+        "field": "language" 
+      }
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------
+"aggregations" : {
+    "语种分类" : {
+      "doc_count_error_upper_bound" : 6,
+      "sum_other_doc_count" : 3479,
+      "buckets" : [
+        {
+          "key" : "en",
+          "doc_count" : 137196
+        },
+        {
+          "key" : "zh",
+          "doc_count" : 65222
+        },
+        {
+          "key" : "hi",
+          "doc_count" : 17965
+        },
+        {
+          "key" : "vi",
+          "doc_count" : 15985
+        },
+        {
+          "key" : "ja",
+          "doc_count" : 9465
+        },
+        {
+          "key" : "gu",
+          "doc_count" : 5416
+        },
+        {
+          "key" : "mr",
+          "doc_count" : 3648
+        },
+        {
+          "key" : "ar",
+          "doc_count" : 2536
+        },
+        {
+          "key" : "ta",
+          "doc_count" : 2053
+        },
+        {
+          "key" : "ru",
+          "doc_count" : 1583
+        }
+      ]
+    }</code></pre>
+<h2 id="查询平均值"><a href="#查询平均值" class="headerlink" title="查询平均值"></a>查询平均值</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "size": 0, 
+  "aggs": {
+    "分类": {
+      "terms": {
+        "field": "age"
+      }
+    },
+    "平均":{
+      "avg": {
+        "field": "age"
+      }
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------
+
+  "aggregations" : {
+    "平均" : {
+      "value" : 28.0
+    },
+    "分类" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : 22,
+          "doc_count" : 2
+        },
+        {
+          "key" : 40,
+          "doc_count" : 1
+        }
+      ]
+    }
+  }</code></pre>
 
             </div>
             <hr/>
