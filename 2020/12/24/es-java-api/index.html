@@ -417,16 +417,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/技术/">
-                                <span class="chip bg-color">技术</span>
-                            </a>
-                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
                             </a>
                         
                             <a href="/tags/elsaticsearch/">
                                 <span class="chip bg-color">elsaticsearch</span>
+                            </a>
+                        
+                            <a href="/tags/技术/">
+                                <span class="chip bg-color">技术</span>
                             </a>
                         
                     </div>
@@ -1636,6 +1636,79 @@ POST <span class="token operator">/</span>sms<span class="token operator">-</spa
        ExtendedStats extendedStats <span class="token operator">=</span>  response<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"agg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大值："</span><span class="token operator">+</span>extendedStats<span class="token punctuation">.</span><span class="token function">getMaxAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">",最小值："</span><span class="token operator">+</span>extendedStats<span class="token punctuation">.</span><span class="token function">getMinAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
+<h4 id="3-5-4-分类查询-应用"><a href="#3-5-4-分类查询-应用" class="headerlink" title="3.5.4 分类查询(应用)"></a>3.5.4 分类查询(应用)</h4><pre class=" language-java"><code class="language-java">
+GET article_nested<span class="token operator">/</span>_search
+<span class="token punctuation">{</span>
+  <span class="token string">"size"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> 
+  <span class="token string">"query"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bool"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"must"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token string">"term"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"dataflag"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"value"</span><span class="token operator">:</span> <span class="token string">"1"</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token string">"constant_score"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"range"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"pubtime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                  <span class="token string">"gte"</span><span class="token operator">:</span> <span class="token string">"2021-03-22 00:00:00"</span><span class="token punctuation">,</span>
+                  <span class="token string">"lte"</span><span class="token operator">:</span> <span class="token string">"2021-03-22 23:59:59"</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"boost"</span><span class="token operator">:</span> <span class="token number">1.2</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"aggs"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token string">"web_url"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+      <span class="token string">"terms"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"field"</span><span class="token operator">:</span> <span class="token string">"websiteZh"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">getWebSiteCategoryToday</span><span class="token punctuation">(</span>RealTimeNewCategory realTimeNewCategory<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>RealTimeNewCategoryVo<span class="token operator">></span> vos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        SearchRequest searchRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SearchRequest</span><span class="token punctuation">(</span>KdConstant<span class="token punctuation">.</span>ELASTICSEARCH<span class="token punctuation">.</span>ESALIAS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        SearchSourceBuilder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SearchSourceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        builder<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        BoolQueryBuilder boolQueryBuilder <span class="token operator">=</span> QueryBuilders<span class="token punctuation">.</span><span class="token function">boolQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        boolQueryBuilder<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span>QueryBuilders<span class="token punctuation">.</span><span class="token function">termQuery</span><span class="token punctuation">(</span><span class="token string">"dataflag"</span><span class="token punctuation">,</span> realTimeNewCategory<span class="token punctuation">.</span><span class="token function">getSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String format <span class="token operator">=</span> <span class="token function">getCurrentTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        boolQueryBuilder<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span>QueryBuilders<span class="token punctuation">.</span><span class="token function">rangeQuery</span><span class="token punctuation">(</span>Constant<span class="token punctuation">.</span>PUBTIME<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>format <span class="token operator">+</span> <span class="token string">" 00:00:00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>format <span class="token operator">+</span> <span class="token string">" 23:59:59"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        builder<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>boolQueryBuilder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        builder<span class="token punctuation">.</span><span class="token function">aggregation</span><span class="token punctuation">(</span>AggregationBuilders<span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"web_url"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"websiteZh"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        searchRequest<span class="token punctuation">.</span><span class="token function">source</span><span class="token punctuation">(</span>builder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        SearchResponse searchResponse <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            searchResponse <span class="token operator">=</span> highLevelClient<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>searchRequest<span class="token punctuation">,</span> RequestOptions<span class="token punctuation">.</span>DEFAULT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>KdUtil<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>searchResponse<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Terms terms <span class="token operator">=</span> searchResponse<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"web_url"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            HashMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Long<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>KdUtil<span class="token punctuation">.</span><span class="token function">getTableSize</span><span class="token punctuation">(</span>vos<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Terms<span class="token punctuation">.</span>Bucket bucket <span class="token operator">:</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>RealTimeNewCategoryVo vo <span class="token operator">:</span> vos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                vo<span class="token punctuation">.</span><span class="token function">setToday</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">getOrDefault</span><span class="token punctuation">(</span>vo<span class="token punctuation">.</span><span class="token function">getWebsiteZh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 0L<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
 
             </div>
             <hr/>
@@ -1699,16 +1772,16 @@ POST <span class="token operator">/</span>sms<span class="token operator">-</spa
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/技术/">
-                                    <span class="chip bg-color">技术</span>
-                                </a>
-                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
                                 </a>
                             
                                 <a href="/tags/elsaticsearch/">
                                     <span class="chip bg-color">elsaticsearch</span>
+                                </a>
+                            
+                                <a href="/tags/技术/">
+                                    <span class="chip bg-color">技术</span>
                                 </a>
                             
                         </div>
@@ -1912,16 +1985,16 @@ POST <span class="token operator">/</span>sms<span class="token operator">-</spa
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/技术/">
+                        <span class="chip bg-color">技术</span>
                     </a>
                     
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/技术/">
-                        <span class="chip bg-color">技术</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
@@ -1969,12 +2042,12 @@ import
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/技术/">
-                        <span class="chip bg-color">技术</span>
-                    </a>
-                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/技术/">
+                        <span class="chip bg-color">技术</span>
                     </a>
                     
                 </div>

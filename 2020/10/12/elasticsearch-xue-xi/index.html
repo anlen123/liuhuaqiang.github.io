@@ -1252,7 +1252,8 @@ sourceBuilder<span class="token punctuation">.</span><span class="token function
 <h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>==——————————————————————————————————————–==</p>
 <p>==————————————————-分割线————————————————————==</p>
 <p>==——————————————————————————————————————–==</p>
-<h1 id="索引篇"><a href="#索引篇" class="headerlink" title="索引篇"></a>索引篇</h1><h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><pre class=" language-shell"><code class="language-shell">PUT test
+<h1 id="索引篇"><a href="#索引篇" class="headerlink" title="索引篇"></a>索引篇</h1><p><a href="https://liuhuaqiang.top/2020/12/24/es-java-api/">ES-JAVA-API</a></p>
+<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><pre class=" language-shell"><code class="language-shell">PUT test
 {
   "settings": {
     "number_of_shards": 1,
@@ -1471,6 +1472,77 @@ sourceBuilder<span class="token punctuation">.</span><span class="token function
   , "from": 0
 }
 </code></pre>
+<h2 id="ID查询"><a href="#ID查询" class="headerlink" title="ID查询"></a>ID查询</h2><pre class=" language-shell"><code class="language-shell">GET test/_doc/1</code></pre>
+<h2 id="多个id查询"><a href="#多个id查询" class="headerlink" title="多个id查询"></a>多个id查询</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "ids": {
+      "values": ["1","2"]
+    }
+  }
+}</code></pre>
+<h2 id="多个字段匹配"><a href="#多个字段匹配" class="headerlink" title="多个字段匹配"></a>多个字段匹配</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "40",
+      "fields": ["name","age"]
+    }
+  }
+}</code></pre>
+<h2 id="prefix查询"><a href="#prefix查询" class="headerlink" title="prefix查询"></a>prefix查询</h2><p>前缀匹配查询</p>
+<pre class=" language-shell"><code class="language-shell">
+GET test/_search
+{
+  "query": {
+    "prefix": {
+      "name": {
+        "value": "吴"
+      }
+    }
+  }
+}</code></pre>
+<h2 id="fuzzy查询"><a href="#fuzzy查询" class="headerlink" title="fuzzy查询"></a>fuzzy查询</h2><p>模糊查询  与match ,withcard的区别如下</p>
+<p><a href="https://blog.csdn.net/weixin_43859729/article/details/108134329" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43859729/article/details/108134329</a></p>
+<ul>
+<li>match 分词匹配检索</li>
+<li>wildcard 通配符检索</li>
+<li>fuzzy 模糊/纠错检索</li>
+</ul>
+<pre class=" language-shell"><code class="language-shell">
+GET test/_search
+{
+  "query": {
+    "fuzzy": {
+      "des": {
+        "value": "相",
+        "prefix_length": 1  #表示最少前面必须相同的数字
+      }
+    }
+  }
+}</code></pre>
+<h2 id="wildcard查询"><a href="#wildcard查询" class="headerlink" title="wildcard查询"></a>wildcard查询</h2><p>通配符查询</p>
+<pre class=" language-shell"><code class="language-shell">
+GET test/_search
+{
+  "query": {
+    "wildcard": {
+      "name": {
+        "value": "刘*"
+      }
+    }
+  }
+}</code></pre>
+<h2 id="regex正则查询"><a href="#regex正则查询" class="headerlink" title="regex正则查询"></a>regex正则查询</h2><p>用正则匹配来查询文档</p>
+<pre class=" language-shell"><code class="language-shell">
+GET test/_search
+{
+  "query": {
+    "regexp": {
+      "dec": "^和"
+    }
+  }
+}</code></pre>
 <h2 id="bool查询"><a href="#bool查询" class="headerlink" title="bool查询"></a>bool查询</h2><p>条件查询,里面有must,should,not_must,not_should  ( 自己理解含义 ) 影响的是后面的权值排序  </p>
 <p>多个条件组合</p>
 <p>运用非常广泛</p>
@@ -1612,6 +1684,22 @@ lt:  <</code></pre>
         "<p>vi</p>"
     ]
 }</code></pre>
+<h2 id="时间范围查询"><a href="#时间范围查询" class="headerlink" title="时间范围查询"></a>时间范围查询</h2><pre class=" language-shell"><code class="language-shell">GET sending/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "range": {
+          "startTime": {
+            "gte":  "2020-03-31T00:37:51.000Z",  # 这是是字符串
+            "lte":  "2020-03-31T10:37:51.000Z"
+          }
+        }
+      },
+      "boost": 1.2
+    }
+  }
+}</code></pre>
 <h1 id="聚合查询篇"><a href="#聚合查询篇" class="headerlink" title="聚合查询篇"></a>聚合查询篇</h1><h2 id="字段分类"><a href="#字段分类" class="headerlink" title="字段分类"></a>字段分类</h2><pre class=" language-shell"><code class="language-shell">GET article_nested/_search
 {
   "size": 0, 
@@ -1708,6 +1796,108 @@ lt:  <</code></pre>
       ]
     }
   }</code></pre>
+<h2 id="去重计数"><a href="#去重计数" class="headerlink" title="去重计数"></a>去重计数</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "size": 0, 
+  "aggs": {
+    "去重计数": {
+      "cardinality": {
+        "field":"age"
+      }
+    }
+  }
+}
+
+---------------------------------------------------------------------------------------
+  "aggregations" : {
+    "去重计数" : {
+      "value" : 2
+    }
+  }
+两种不同的年龄</code></pre>
+<h2 id="范围统计"><a href="#范围统计" class="headerlink" title="范围统计"></a>范围统计</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "size": 0, 
+  "aggs": {
+    "范围统计": {
+      "range": {
+        "field": "age",
+        "ranges": [
+          {
+            "from": 0,
+            "to": 30
+          },
+          {
+            "from": 31,
+            "to": 50
+          }
+        ]
+      }
+    }
+  }
+}
+
+---------------------------------------------------------------------------------------
+
+  "aggregations" : {
+    "范围统计" : {
+      "buckets" : [
+        {
+          "key" : "0.0-30.0",
+          "from" : 0.0,
+          "to" : 30.0,
+          "doc_count" : 2
+        },
+        {
+          "key" : "31.0-50.0",
+          "from" : 31.0,
+          "to" : 50.0,
+          "doc_count" : 1
+        }
+      ]
+    }
+  }
+
+年龄0-30的有2位
+年龄31-50的有1位
+</code></pre>
+<h2 id="统计查询"><a href="#统计查询" class="headerlink" title="统计查询"></a>统计查询</h2><pre class=" language-shell"><code class="language-shell">GET test/_search
+{
+  "size": 0, 
+  "aggs": {
+    "统计查询": {
+      "extended_stats": {
+        "field": "age"
+      }
+    }
+  }
+}
+---------------------------------------------------------------------------------------
+    "统计查询" : {
+      "count" : 3,
+      "min" : 22.0,
+      "max" : 40.0,
+      "avg" : 28.0,
+      "sum" : 84.0,
+      "sum_of_squares" : 2568.0,
+      "variance" : 72.0,
+      "variance_population" : 72.0,
+      "variance_sampling" : 108.0,
+      "std_deviation" : 8.48528137423857,
+      "std_deviation_population" : 8.48528137423857,
+      "std_deviation_sampling" : 10.392304845413264,
+      "std_deviation_bounds" : {
+        "upper" : 44.970562748477136,
+        "lower" : 11.029437251522861,
+        "upper_population" : 44.970562748477136,
+        "lower_population" : 11.029437251522861,
+        "upper_sampling" : 48.78460969082653,
+        "lower_sampling" : 7.215390309173472
+      }
+    }
+  }
+他可以帮你查询指定field 的最大值，最小值，平均值，平方和...
+使用 extended_stats</code></pre>
 
             </div>
             <hr/>
@@ -1992,12 +2182,12 @@ $1 是后面跟的第一个变量
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
                     <a href="/tags/技术/">
                         <span class="chip bg-color">技术</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                     <a href="/tags/shell/">
