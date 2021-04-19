@@ -618,7 +618,15 @@ xxxxxxxxx 为你的仓库网站</code></pre>
 
 对已经commit 的文件取消修改
 <span class="token function">git</span> reset HEAD filename 
-<span class="token function">git</span> checkout filename </code></pre>
+<span class="token function">git</span> checkout filename 
+
+重写这次提交的commit
+<span class="token function">git</span> commit --amend -m <span class="token string">"你的提交信息"</span>
+
+取消这次提交<span class="token punctuation">(</span>软回滚到上次提交<span class="token punctuation">)</span>
+<span class="token function">git</span> reset --soft HEAD~   
+
+</code></pre>
 <blockquote>
 <p>git revert 和 git reset的区别</p>
 </blockquote>
